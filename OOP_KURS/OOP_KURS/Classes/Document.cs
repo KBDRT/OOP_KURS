@@ -14,6 +14,6 @@ namespace OOP_KURS
 
         public DateTime dateTime = DateTime.Now;
 
-        public List<Product> Positions = new List<Product>();
+        public List<Position> Positions = new List<Position>();
     }
 }

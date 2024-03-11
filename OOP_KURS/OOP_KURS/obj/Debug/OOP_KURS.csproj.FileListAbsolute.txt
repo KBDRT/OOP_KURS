@@ -23,3 +23,5 @@ K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocsForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocumentForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\AddressForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\AddressForm.baml
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicForm.g.cs
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicForm.baml

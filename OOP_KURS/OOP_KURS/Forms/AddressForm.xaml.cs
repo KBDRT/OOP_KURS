@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace OOP_KURS.Forms
+namespace OOP_KURS
 {
     /// <summary>
     /// Логика взаимодействия для AddressForm.xaml

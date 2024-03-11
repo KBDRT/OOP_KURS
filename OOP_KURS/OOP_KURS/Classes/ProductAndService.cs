@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    class Product
+    class ProductAndService
     {
         public string FullName { set; get; }
         public string Type { set; get; }
         public Unit UnitOfMeasurement { set; get; }
         public string Info { set; get; }
+    }
+
+    class Position : ProductAndService
+    {
+        private uint Number;
+        public decimal Amount { set; get; }
     }
 }

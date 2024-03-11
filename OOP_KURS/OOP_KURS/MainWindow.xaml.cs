@@ -47,5 +47,11 @@ namespace OOP_KURS
             BankForm View = new BankForm();
             View.Show();
         }
+
+        private void Btn_Person_Click(object sender, RoutedEventArgs e)
+        {
+            DynamicForm View = new DynamicForm((sender as Button).Name);
+            View.Show();
+        }
     }
 }
