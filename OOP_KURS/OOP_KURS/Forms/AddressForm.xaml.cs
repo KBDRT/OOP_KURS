@@ -12,18 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace OOP_KURS
+namespace OOP_KURS.Forms
 {
     /// <summary>
-    /// Логика взаимодействия для BankForm.xaml
+    /// Логика взаимодействия для AddressForm.xaml
     /// </summary>
-    public partial class BankForm : Window
+    public partial class AddressForm : Window
     {
-        public BankForm()
+        public AddressForm()
         {
             InitializeComponent();
-
-            TextBox_BIK.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
         }
     }
 }

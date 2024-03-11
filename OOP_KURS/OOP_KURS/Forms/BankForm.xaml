@@ -31,7 +31,7 @@
             <Label Grid.Row ="1" Content="Банковский идентификационный код (БИК)" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26"  Width="251"/>
 
             <TextBox Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="349" />
-            <TextBox Grid.Row ="1" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" MaxLength="9"  />
+            <TextBox Grid.Row ="1" Grid.Column="1" x:Name ="TextBox_BIK" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" MaxLength="9"  />
 
         </Grid>
     </Grid>

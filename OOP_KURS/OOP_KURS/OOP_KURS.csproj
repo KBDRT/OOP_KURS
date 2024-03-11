@@ -57,6 +57,9 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Address.cs" />
     <Compile Include="Classes\Bank.cs" />
+    <Compile Include="Forms\AddressForm.xaml.cs">
+      <DependentUpon>AddressForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\BankForm.xaml.cs">
       <DependentUpon>BankForm.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
     <Compile Include="Classes\Unit.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Classes\Worker.cs" />
+    <Page Include="Forms\AddressForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\BankForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

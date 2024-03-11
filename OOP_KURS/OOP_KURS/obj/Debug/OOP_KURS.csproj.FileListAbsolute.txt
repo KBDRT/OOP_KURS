@@ -21,3 +21,5 @@ K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\BankForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\CustomerForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocsForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocumentForm.baml
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\AddressForm.g.cs
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\AddressForm.baml
