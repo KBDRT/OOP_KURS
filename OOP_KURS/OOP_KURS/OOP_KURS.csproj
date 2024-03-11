@@ -55,9 +55,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Address.cs" />
     <Compile Include="Bank.cs" />
+    <Compile Include="CustomerForm.xaml.cs">
+      <DependentUpon>CustomerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DocsForm.xaml.cs">
+      <DependentUpon>DocsForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs" />
+    <Compile Include="DocumentForm.xaml.cs">
+      <DependentUpon>DocumentForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs" />
+    <Compile Include="Product.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="TypeDocument.cs" />
     <Compile Include="Unit.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Worker.cs" />
+    <Page Include="CustomerForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DocsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DocumentForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

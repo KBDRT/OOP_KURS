@@ -24,5 +24,28 @@ namespace OOP_KURS
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DocumentForm DocView = new DocumentForm();
+            DocView.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            CustomerForm CustomerView = new CustomerForm();
+            CustomerView.Show();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //BankForm View = new BankForm();
+            //View.Show();
+        }
     }
 }

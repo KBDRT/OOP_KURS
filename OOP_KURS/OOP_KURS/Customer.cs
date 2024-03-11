@@ -8,9 +8,10 @@ namespace OOP_KURS
 {
     class Customer
     {
+        private string ID;
         public string Name { get; set; }
         public string Form { get; set; }
-        public string LegalAddress { get; set; }
+        public Address LegalAddress { get; set; }
         public string Phone { get; set; }
         public int INN { get; set; }
         public int KPP { get; set; }
