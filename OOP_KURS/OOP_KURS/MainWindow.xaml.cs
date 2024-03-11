@@ -44,8 +44,8 @@ namespace OOP_KURS
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            //BankForm View = new BankForm();
-            //View.Show();
+            BankForm View = new BankForm();
+            View.Show();
         }
     }
 }

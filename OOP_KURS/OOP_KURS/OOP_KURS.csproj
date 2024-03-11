@@ -55,34 +55,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Address.cs" />
-    <Compile Include="Bank.cs" />
-    <Compile Include="CustomerForm.xaml.cs">
+    <Compile Include="Classes\Address.cs" />
+    <Compile Include="Classes\Bank.cs" />
+    <Compile Include="Forms\BankForm.xaml.cs">
+      <DependentUpon>BankForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CustomerForm.xaml.cs">
       <DependentUpon>CustomerForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DocsForm.xaml.cs">
+    <Compile Include="Forms\DocsForm.xaml.cs">
       <DependentUpon>DocsForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Document.cs" />
-    <Compile Include="DocumentForm.xaml.cs">
+    <Compile Include="Classes\Document.cs" />
+    <Compile Include="Forms\DocumentForm.xaml.cs">
       <DependentUpon>DocumentForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="Service.cs" />
-    <Compile Include="TypeDocument.cs" />
-    <Compile Include="Unit.cs" />
-    <Compile Include="Utils.cs" />
-    <Compile Include="Worker.cs" />
-    <Page Include="CustomerForm.xaml">
+    <Compile Include="Classes\Person.cs" />
+    <Compile Include="Classes\Product.cs" />
+    <Compile Include="Classes\Service.cs" />
+    <Compile Include="Classes\TypeDocument.cs" />
+    <Compile Include="Classes\Unit.cs" />
+    <Compile Include="Classes\Utils.cs" />
+    <Compile Include="Classes\Worker.cs" />
+    <Page Include="Forms\BankForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DocsForm.xaml">
+    <Page Include="Forms\CustomerForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DocumentForm.xaml">
+    <Page Include="Forms\DocsForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Forms\DocumentForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -94,7 +101,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Customer.cs" />
+    <Compile Include="Classes\Customer.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
