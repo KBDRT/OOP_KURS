@@ -19,9 +19,16 @@ namespace OOP_KURS
     /// </summary>
     public partial class CustomerForm : Window
     {
+        Customer Client = new Customer();
         public CustomerForm()
         {
             InitializeComponent();
+            DataContext = Client;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Worker.AddNewCustomer(Client);
         }
     }
 }

@@ -23,5 +23,12 @@ namespace OOP_KURS
             AddNewDocumentType("Акт выполненных работ");
             AddNewDocumentType("Товарная накладная");
         }
+
+        public static void AddNewCustomer(Customer im_Customer)
+        {
+            Customers.Add((Customer)im_Customer.Clone());
+        }
+
+
     }
 }

@@ -1,0 +1,12 @@
+﻿<Window x:Class="OOP_KURS.TabView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOP_KURS"
+        mc:Ignorable="d"
+        Title="TabView" Height="582" Width="1172">
+    <Grid>
+        <DataGrid x:Name="DataGrid_Main" HorizontalAlignment="Left" Height="504" Margin="21,23,0,0" VerticalAlignment="Top" Width="1119"/>
+    </Grid>
+</Window>

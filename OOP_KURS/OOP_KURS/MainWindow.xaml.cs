@@ -53,5 +53,11 @@ namespace OOP_KURS
             DynamicForm View = new DynamicForm((sender as Button).Name);
             View.Show();
         }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            TabView View = new TabView();
+            View.Show();
+        }
     }
 }

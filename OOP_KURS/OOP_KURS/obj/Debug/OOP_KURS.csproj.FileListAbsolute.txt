@@ -25,3 +25,7 @@ K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\AddressForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\AddressForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicForm.baml
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\TabView.g.cs
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\TabView.baml
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\OOP_KURS.csproj.CopyComplete
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\FilterDataGrid.dll

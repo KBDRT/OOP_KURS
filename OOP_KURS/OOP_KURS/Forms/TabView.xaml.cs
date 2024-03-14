@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace OOP_KURS
 {
     /// <summary>
-    /// Логика взаимодействия для DocumentForm.xaml
+    /// Логика взаимодействия для TabView.xaml
     /// </summary>
-    public partial class DocumentForm : Window
+    public partial class TabView : Window
     {
-        public DocumentForm()
+        public TabView()
         {
             InitializeComponent();
-
-            ComboBox_DocType.ItemsSource = Worker.Types;
-            ComboBox_DocType.DisplayMemberPath = "Name";
-
-            ComboBox_Customer.ItemsSource = Worker.Customers;
-            ComboBox_Customer.DisplayMemberPath = "Name";
         }
     }
 }

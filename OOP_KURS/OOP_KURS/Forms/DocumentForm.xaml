@@ -22,7 +22,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="522,23,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30"/>
         <DatePicker HorizontalAlignment="Left" Margin="732,21,0,0" VerticalAlignment="Top" Width="153"/>
         <Label Content="Дата документа:" HorizontalAlignment="Left" Margin="615,19,0,0" VerticalAlignment="Top" Width="98"/>
-        <ComboBox HorizontalAlignment="Left" Margin="132,64,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="ComboBox_Customer" HorizontalAlignment="Left" Margin="132,64,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Заказчик:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,60,0,0"/>
         <ComboBox HorizontalAlignment="Left" Margin="732,68,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Исполнитель:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,64,0,0"/>

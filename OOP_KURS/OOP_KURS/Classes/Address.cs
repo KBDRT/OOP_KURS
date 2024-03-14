@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    class Address
+    public class Address
     {
         public int PostalCode { set; get; }
         public string Country { set; get; } = "Россия";

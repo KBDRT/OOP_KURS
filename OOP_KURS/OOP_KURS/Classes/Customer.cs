@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    class Customer
+    public class Customer : ICloneable
     {
         private string ID;
         public string Name { get; set; }
@@ -20,5 +20,10 @@ namespace OOP_KURS
         public string CorrespondentAccount { get; set; }
         public Bank Bank { get; set; }
         public Person CompanyRepresentative { get; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
     }
 }

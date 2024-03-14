@@ -32,7 +32,7 @@
         <Label x:Name="Label_3" Grid.Row ="2" Content="{Binding Path = Text_3}" Height="25" HorizontalAlignment="Left"  VerticalAlignment="Center" />
         <Label x:Name="Label_4" Grid.Row ="3" Content="{Binding Path = Text_4}" Height="25" HorizontalAlignment="Left"  VerticalAlignment="Center"    />
 
-        <TextBox  x:Name="TextBox_1"  Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Left"   Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="234"    />
+        <TextBox  x:Name="TextBox_1" Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Left"   Height="22" TextWrapping="Wrap"  VerticalAlignment="Center" Width="234"    />
         <TextBox  x:Name="TextBox_2" Grid.Row ="1" Grid.Column="1" HorizontalAlignment="Left"  Height="22" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"  />
         <TextBox  x:Name="TextBox_3" Grid.Row ="2" Grid.Column="1" HorizontalAlignment="Left"   Height="22" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"  />
         <Button   x:Name="Btn_1"     Grid.Row ="2" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Right" Height="22" Width="61" FontSize="10"  />
