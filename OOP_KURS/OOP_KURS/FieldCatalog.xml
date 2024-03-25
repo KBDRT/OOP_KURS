@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<FieldCatalog>
+	<Section name="Customer">
+		<Name> Название компании </Name>
+		<Form> Форма собственности </Form>
+		<LegalAddress> Юр. Адрес</LegalAddress>
+		<Phone> Телефон </Phone>
+		<INN> ИНН </INN>
+		<KPP> КПП </KPP>
+		<OGR_Number> ОГРНИП </OGR_Number>
+		<PaymentAccount> р. счет</PaymentAccount>
+		<CorrespondentAccount> к.счет </CorrespondentAccount>
+		<Bank> Банк </Bank>
+		<CompanyRepresentative> Представитель </CompanyRepresentative>
+	</Section>
+
+
+</FieldCatalog>

@@ -8,7 +8,7 @@ namespace OOP_KURS
 {
     public class Customer : ICloneable
     {
-        private string ID;
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Form { get; set; }
         public Address LegalAddress { get; set; }

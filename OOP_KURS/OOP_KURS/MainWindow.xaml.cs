@@ -31,12 +31,6 @@ namespace OOP_KURS
             DocView.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            CustomerForm CustomerView = new CustomerForm();
-            CustomerView.Show();
-        }
-
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
@@ -50,13 +44,19 @@ namespace OOP_KURS
 
         private void Btn_Person_Click(object sender, RoutedEventArgs e)
         {
-            DynamicForm View = new DynamicForm((sender as Button).Name);
+            DynamicForm View = new DynamicForm((sender as MenuItem).Name);
             View.Show();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             TabView View = new TabView();
+            View.Show();
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            DynamicTabForm View = new DynamicTabForm();
             View.Show();
         }
     }

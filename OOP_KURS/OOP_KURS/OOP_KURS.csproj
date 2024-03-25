@@ -61,6 +61,7 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Address.cs" />
     <Compile Include="Classes\Bank.cs" />
+    <Compile Include="Classes\FieldCatalog.cs" />
     <Compile Include="Forms\AddressForm.xaml.cs">
       <DependentUpon>AddressForm.xaml</DependentUpon>
     </Compile>
@@ -107,6 +108,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Forms\DynamicTabForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Forms\TabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -122,6 +127,9 @@
     <Compile Include="Classes\Customer.cs" />
     <Compile Include="Forms\DynamicForm.xaml.cs">
       <DependentUpon>DynamicForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DynamicTabForm.xaml.cs">
+      <DependentUpon>DynamicTabForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\TabView.xaml.cs">
       <DependentUpon>TabView.xaml</DependentUpon>
@@ -157,6 +165,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FieldCatalog.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_KURS"
         mc:Ignorable="d"
-        Title="DynamicForm" Height="450" Width="800">
+        Title="DynamicForm" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid x:Name="rootWindow">
         <Grid HorizontalAlignment="Left" Height="142" Margin="58,36,0,0" VerticalAlignment="Top" Width="622" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>

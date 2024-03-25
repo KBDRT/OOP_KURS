@@ -9,38 +9,27 @@
         Title="MainWindow" Height="714.251" Width="1028.87" WindowStartupLocation="CenterScreen">
     <Grid>
 
-
-        <!--<control:FilterDataGrid ShowStatusBar="False" ShowElapsedTime="False" 
-                                DateFormatString="d"  FilterLanguage="English"-->
-
-        <Button Content="Создание документа" HorizontalAlignment="Left" Margin="28,86,0,0" VerticalAlignment="Top" Width="126" Click="Button_Click"/>
-        <Button Content="Просмотр документов" HorizontalAlignment="Left" Margin="184,81,0,0" VerticalAlignment="Top" Width="136" Click="Button_Click_2"/>
-        <Button Content="Настройки" HorizontalAlignment="Left" Margin="460.408,25,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="Button_Click_3"/>
-
-
-        <Button x:Name="Btn_Person"  Content="person" Grid.Column="1" HorizontalAlignment="Left" Margin="344,81,0,0" VerticalAlignment="Top" Width="75" Click="Btn_Person_Click"/>
-        <Button x:Name="Btn_ProductAndService" Content="product" Grid.Column="1" HorizontalAlignment="Left" Margin="344,123,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.68,3" Click="Btn_Person_Click"/>
-        <Button x:Name="Btn_Unit" Content="unit"    Grid.Column="1" HorizontalAlignment="Left" Margin="344,161,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.68,3" Click="Btn_Person_Click"/>
-        <Button Content="Show customers" Grid.Column="1" HorizontalAlignment="Left" Margin="344,217,0,0" VerticalAlignment="Top" Width="144" Click="Button_Click_4"/>
+        <control:FilterDataGrid ShowStatusBar="False" ShowElapsedTime="False" 
+                                DateFormatString="d"  FilterLanguage="Russian" Margin="10,114,33,133" ></control:FilterDataGrid>
 
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Документ">
                 <MenuItem Header="Просмотр"></MenuItem>
-                <MenuItem Header="Создание"></MenuItem>
+                <MenuItem Header="Создание" Click="Button_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="Справочники">
-                <MenuItem Header="Заказчики" Click="Button_Click_1"></MenuItem>
-                <MenuItem Header="Товары/услуги"></MenuItem>
+                <MenuItem Header="Заказчики" Click="Button_Click_5"></MenuItem>
+                <MenuItem x:Name="Btn_ProductAndService" Click="Btn_Person_Click" Header="Товары/услуги"></MenuItem>
                 <Separator />
                 <MenuItem Header="Адреса"></MenuItem>
-                <MenuItem Header="Банки"></MenuItem>
-                <MenuItem Header="Единицы измерения"></MenuItem>
+                <MenuItem Header="Банки"  Click="Button_Click_3"></MenuItem>
+                <MenuItem x:Name="Btn_Unit" Header="Единицы измерения" Click="Btn_Person_Click"></MenuItem>
+                <MenuItem x:Name="Btn_Person" Header="Представитель" Click="Btn_Person_Click"></MenuItem>
 
             </MenuItem>
             <MenuItem Header="Настройки">
 
             </MenuItem>
         </Menu>
-
     </Grid>
 </Window>

@@ -29,3 +29,5 @@ K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\TabView.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\TabView.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\OOP_KURS.csproj.CopyComplete
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\FilterDataGrid.dll
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicTabForm.g.cs
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicTabForm.baml

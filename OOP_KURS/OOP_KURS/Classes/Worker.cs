@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace OOP_KURS
 {
@@ -10,7 +14,12 @@ namespace OOP_KURS
     {
         public static List<TypeDocument> Types = new List<TypeDocument>();
 
-        public static List<Customer> Customers = new List<Customer>();
+        public static ObservableCollection<Customer> Customers = new ObservableCollection<Customer>();
+
+        static Dictionary<string, int> Counter = new Dictionary<string, int>
+        {
+            {"Customer", 0},
+        };
 
         public static void AddNewDocumentType(string im_Name, string im_Info = "")
         {
@@ -26,9 +35,14 @@ namespace OOP_KURS
 
         public static void AddNewCustomer(Customer im_Customer)
         {
+            Counter["Customer"]++;
+            im_Customer.ID = Counter["Customer"];
             Customers.Add((Customer)im_Customer.Clone());
         }
 
+        public static void DeleteCustomer(List<Customer> Rows)
+        {
 
+        }
     }
 }
