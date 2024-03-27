@@ -14,5 +14,31 @@
 		<CompanyRepresentative> Представитель </CompanyRepresentative>
 	</Section>
 
+	<Section name="Address">
+		<Country> Страна </Country>
+		<Region>  Регион </Region>
+		<ShortRegion>  Сокр. Регион </ShortRegion>
+		<City> Город </City>
+		<PostalCode> Почтовый индекс </PostalCode>
+		<Street> Улица </Street>
+		<House> Дом </House>
+		<AppartNumber>Квартира</AppartNumber>
+		<Complex> Комплекс </Complex>
+		<Info> Доп. информация </Info>
+	</Section>
+
+	<Section name="Bank">
+		<Name> Название </Name>
+		<BIK>  БИК </BIK>
+	</Section>
+
+	<Section name="Person">
+		<LastName> Фамилия </LastName>
+		<FirstName>  Имя </FirstName>
+		<Patronymic> Отчество </Patronymic>
+		<Position>  Должность </Position>
+	</Section>
+
+
 
 </FieldCatalog>

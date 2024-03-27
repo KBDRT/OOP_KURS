@@ -25,39 +25,13 @@ namespace OOP_KURS
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Open_Reference_Form(object sender, RoutedEventArgs e)
         {
-            DocumentForm DocView = new DocumentForm();
-            DocView.Show();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            BankForm View = new BankForm();
-            View.Show();
-        }
-
-        private void Btn_Person_Click(object sender, RoutedEventArgs e)
-        {
-            DynamicForm View = new DynamicForm((sender as MenuItem).Name);
-            View.Show();
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            TabView View = new TabView();
-            View.Show();
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            DynamicTabForm View = new DynamicTabForm();
-            View.Show();
+            if ((sender as MenuItem).Name.Length != 0)
+            {
+                DynamicTabForm View = new DynamicTabForm((sender as MenuItem).Name.Substring(4));
+                View.Show();
+            }
         }
     }
 }

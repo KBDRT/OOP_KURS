@@ -16,7 +16,7 @@ namespace OOP_KURS
         private readonly Type ElementsType = typeof(T);
         private readonly FieldInfo ID_MethodInfo;
 
-        public void AddToList(dynamic elem)
+        public void AddToList(T elem)
         {
             if (ID_MethodInfo != null)
                 ID_MethodInfo.SetValue(elem, Elements.Count + 1);
@@ -24,13 +24,9 @@ namespace OOP_KURS
             Elements.Add(elem);
         }
 
-        public void DeleteFromList(int ID)
+        public void DeleteFromList(T elem)
         {
-            //Elements.Remove((x) => x == "Bob");
-            //var toRemove = Elements.Where(i => typeof(T).ID == ID);
-
-            //foreach (var item in toRemove)
-            //    Elements.Remove(item);
+            Elements.Remove(elem);
         }
 
         public Reference()
@@ -51,4 +47,5 @@ namespace OOP_KURS
 
     internal class CustomerReference : Reference<Customer> { }
     internal class TypeReference : Reference<TypeDocument> { }
+    internal class BankReference : Reference<Bank> { }
 }

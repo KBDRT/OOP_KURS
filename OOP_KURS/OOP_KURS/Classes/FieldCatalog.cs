@@ -66,7 +66,7 @@ namespace OOP_KURS
         // Получить из строки подстроку между двумя символами
         static private void ParseFieldNameBtw(ref string FieldName, char LeftSymbol = '<', char RightSymbol = '>')
         {
-            if (FieldName != null) 
+            if (FieldName != null)
             {
                 int FirstIndex = FieldName.IndexOf(LeftSymbol) + 1;
                 int SecondIndex = FieldName.IndexOf(RightSymbol) - 1;
@@ -88,9 +88,17 @@ namespace OOP_KURS
                 if (FieldText == null)
                     continue;
 
-                DataGridTextColumn textColumn = new DataGridTextColumn();
-                textColumn.Header = FieldText;
-                textColumn.Binding = new Binding(FieldName);
+
+                // to:do
+                if (FieldName == "LegalAddress")
+                    FieldName = "LegalAddress.FullName";
+
+                DataGridTextColumn textColumn = new DataGridTextColumn
+                {
+                    Header = FieldText,
+                    Binding = new Binding(FieldName),
+                    Width = DataGridLength.Auto
+                };
                 Grid.Columns.Add(textColumn);
             }
         }

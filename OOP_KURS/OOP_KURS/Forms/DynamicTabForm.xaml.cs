@@ -22,27 +22,50 @@ namespace OOP_KURS
     /// </summary>
     public partial class DynamicTabForm : Window
     {
-        public DynamicTabForm()
+        private readonly string RefName;
+        public DynamicTabForm(string ReferenceName, string Mode = "Show")
         {
             InitializeComponent();
 
-            FieldCatalog.SetColumnsForDataGrid(DataGrid, "Customer");
-            DataGrid.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
+            RefName = ReferenceName;
+
+
+            if (Mode != "Sel")
+                LastRow.Height = new GridLength(0);
+
+            FieldCatalog.SetColumnsForDataGrid(DataGrid, RefName);
+            DataGrid.ItemsSource = ReferenceHelper.GetElementsByRefName(RefName);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            CustomerForm CustomerView = new CustomerForm();
-            CustomerView.Show();
+            switch (RefName)
+            {
+                case "Customer":
+                    CustomerForm CustomerView = new CustomerForm();
+                    CustomerView.Show();
+                    break;
+                case "Address":
+                    //AddressForm AddressForm = new AddressForm();
+                    //AddressForm.Show();
+                    break;
+                case "Bank":
+                    BankForm BankForm = new BankForm();
+                    BankForm.Show();
+                    break;
+            }
+         
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (DataGrid.SelectedItems.Count > 0)
             {
-                //Type userType = Type.GetType("OOP_KURS.Customer");
-
-                //Worker.DeleteCustomer(DataGrid.SelectedItems.OfType<Customer>().ToList());
+                List<dynamic> SelectedItemsList = DataGrid.SelectedItems.OfType<dynamic>().ToList();
+                foreach (var chel in SelectedItemsList)
+                {
+                    ReferenceHelper.Delete(chel);
+                }
             }
         }
     }

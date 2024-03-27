@@ -14,8 +14,8 @@ namespace OOP_KURS
         public string Form { get; set; }
         public Address LegalAddress { get; set; }
         public string Phone { get; set; }
-        public int INN { get; set; }
-        public int KPP { get; set; }
+        public int? INN { get; set; }
+        public int? KPP { get; set; }
         public string OGR_Number { get; set; }
         public string PaymentAccount { get; set; }
         public string CorrespondentAccount { get; set; }

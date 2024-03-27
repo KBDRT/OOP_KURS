@@ -25,6 +25,8 @@ namespace OOP_KURS
         public CustomerForm()
         {
             InitializeComponent();
+            Client.LegalAddress = new Address();
+            Client.CompanyRepresentative = new Person();
             DataContext = Client;
         }
 
@@ -39,6 +41,12 @@ namespace OOP_KURS
             Customer Client2 = (Customer)Client.Clone();
 
             ReferenceHelper.Add(Client2);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DynamicTabForm AddressForm = new DynamicTabForm("Address", "Sel");
+            AddressForm.Show();
         }
     }
 }

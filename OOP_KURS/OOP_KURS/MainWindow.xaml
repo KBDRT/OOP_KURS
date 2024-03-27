@@ -15,16 +15,16 @@
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Документ">
                 <MenuItem Header="Просмотр"></MenuItem>
-                <MenuItem Header="Создание" Click="Button_Click"></MenuItem>
+                <MenuItem Header="Создание"></MenuItem>
             </MenuItem>
             <MenuItem Header="Справочники">
-                <MenuItem Header="Заказчики" Click="Button_Click_5"></MenuItem>
-                <MenuItem x:Name="Btn_ProductAndService" Click="Btn_Person_Click" Header="Товары/услуги"></MenuItem>
+                <MenuItem x:Name="Btn_Customer" Header="Заказчики" Click="Open_Reference_Form"></MenuItem>
+                <MenuItem  Click="Open_Reference_Form" Header="Товары/услуги"></MenuItem>
                 <Separator />
-                <MenuItem Header="Адреса"></MenuItem>
-                <MenuItem Header="Банки"  Click="Button_Click_3"></MenuItem>
-                <MenuItem x:Name="Btn_Unit" Header="Единицы измерения" Click="Btn_Person_Click"></MenuItem>
-                <MenuItem x:Name="Btn_Person" Header="Представитель" Click="Btn_Person_Click"></MenuItem>
+                <MenuItem x:Name="Btn_Address" Header="Адреса" Click="Open_Reference_Form"></MenuItem>
+                <MenuItem x:Name="Btn_Bank" Header="Банки"  Click="Open_Reference_Form"></MenuItem>
+                <MenuItem Header="Единицы измерения" Click="Open_Reference_Form"></MenuItem>
+                <MenuItem x:Name="Btn_Person" Header="Представитель" Click="Open_Reference_Form"></MenuItem>
 
             </MenuItem>
             <MenuItem Header="Настройки">

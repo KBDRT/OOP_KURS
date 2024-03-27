@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_KURS"
         mc:Ignorable="d"
-        Title="CustomerForm" Height="463.862" Width="797.625" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="55*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Margin="47,34,76.601,61" ShowGridLines="True">
+        Title="CustomerForm" Height="520.739" Width="908.851" WindowStartupLocation="CenterScreen">
+    <Grid Margin="5,5,5,5">
+
+        <Grid  ShowGridLines="False" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height ="3.5*"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -21,45 +20,137 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.75*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="49*"></ColumnDefinition>
-                <ColumnDefinition Width="93*"></ColumnDefinition>
+                <ColumnDefinition Width="1.15*" ></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row ="0" Content="Название заказчика" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="121"/>
-            <Label Grid.Row ="1" Content="Форма компании" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="106"/>
-            <Label Grid.Row ="2" Content="Юридический адрес" HorizontalAlignment="Left"  VerticalAlignment="Center" RenderTransformOrigin="0.352,0.124" Height="26" Margin="0,3,0,2" Width="123"/>
-            <Label Grid.Row ="3" Content="Телефон" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="57"/>
-            <Label Grid.Row ="4" Content="ИНН" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" Width="36"/>
-            <Label Grid.Row ="5" Content="КПП" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="34"/>
-            <Label Grid.Row ="6" Content="ОГРН" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" Width="40"/>
-            <Label Grid.Row ="7" Content="р/счет" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" Width="45"/>
-            <Label Grid.Row ="8" Content="к/счет" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" Width="44"/>
-            <Label Grid.Row ="9" Content="Банк" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="36"/>
-            <Label Grid.Row ="10" Content="Представитель" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" Width="92"/>
+            <Label Grid.Row ="0" Content="Название заказчика" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3"  FontWeight="Bold"/>
+            <Label Grid.Row ="1" Content="Форма компании" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" FontWeight="Bold" />
+            <Label Grid.Row ="2" Content="Юридический адрес" HorizontalAlignment="Left"  VerticalAlignment="Center" RenderTransformOrigin="0.352,0.124" Height="26" Margin="0,3,0,2" FontWeight="Bold"/>
+            <Label Grid.Row ="3" Content="Телефон" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" FontWeight="Bold" />
+            <Label Grid.Row ="4" Content="ИНН" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
+            <Label Grid.Row ="5" Content="КПП" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" FontWeight="Bold" />
+            <Label Grid.Row ="6" Content="ОГРН" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
+            <Label Grid.Row ="7" Content="р/счет" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" FontWeight="Bold" />
+            <Label Grid.Row ="8" Content="к/счет" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
+            <Label Grid.Row ="9" Content="Банк" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" FontWeight="Bold" />
+            <Label Grid.Row ="10" Content="Представитель" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" FontWeight="Bold" />
 
-            <TextBox  Grid.Row ="0" Text="{Binding Path = Name}"  Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+            <TextBox Grid.Row ="0" Text="{Binding Path = Name}"  Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap" VerticalAlignment="Center" Width="Auto" MinWidth="200"/>
+
+            <Separator Grid.Row ="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom" ></Separator>
+            <Separator Grid.Row ="1" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="3" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="4" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="5" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="6" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="8" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+            <Separator Grid.Row ="10" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
+
+           <!--<Separator   VerticalAlignment="Bottom" ></Separator>-->
+
+            <Rectangle Grid.Row ="0" Grid.Column="0" Grid.RowSpan="11" Margin="0,0,5,0" HorizontalAlignment="Right"   VerticalAlignment="Stretch" Fill="Black"  Width="0.5"/>
+
             <ComboBox Grid.Row ="1" Text="{Binding Path = Form}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="2" Text="" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <Button   Grid.Row ="2" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="75" Margin="194,3,0,0"/>
-            <TextBox  Grid.Row ="3" Text="{Binding Path = Phone}"  Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="4" Text="{Binding Path = INN}" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="5" Text="{Binding Path = KPP}" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="6" Text="{Binding Path = OGR_Number}" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="7" Text="{Binding Path = PaymentAccount}" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="8" Text="{Binding Path = CorrespondentAccount}" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
 
-            <TextBox  Grid.Row ="9" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+            <Grid Grid.Row="2" Grid.Column="1" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width ="0.65*"></ColumnDefinition>
+                    <ColumnDefinition Width ="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width ="0.65*"></ColumnDefinition>
+                    <ColumnDefinition Width ="1.5*"></ColumnDefinition>
+                    <ColumnDefinition Width ="0.65*"></ColumnDefinition>
+                    <ColumnDefinition Width ="1.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Row ="0" Grid.Column="0"  Content="Страна" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="0" Grid.Column="1" Text="{Binding Path = LegalAddress.Country}"  TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="0" Grid.Column="2"  Content="Регион" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="0" Grid.Column="3" Text="{Binding Path = LegalAddress.Region}"    TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="0" Grid.Column="4"  Content="Кр. Регион" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="0" Grid.Column="5" Text="{Binding Path = LegalAddress.ShortRegion}"   TextWrapping="Wrap"  HorizontalAlignment="Left" Width="50" VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="1" Grid.Column="0"  Content="Город" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="1" Grid.Column="1" Text="{Binding Path = LegalAddress.City}"    TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="1" Grid.Column="2"  Content="Индекс" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="1" Grid.Column="3" Text="{Binding Path = LegalAddress.PostalCode}"  MaxLength="6" TextWrapping="Wrap"  Width="48" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="1" Grid.Column="4"  Content="Улица" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="1" Grid.Column="5" Text="{Binding Path = LegalAddress.Street}"   TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="2" Grid.Column="0"  Content="Дом" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="2" Grid.Column="1" Text="{Binding Path = LegalAddress.House}"  HorizontalAlignment="Left"  Width ="40" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="2" Grid.Column="2"  Content="Квартира" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="2" Grid.Column="3" Text="{Binding Path = LegalAddress.AppartNumber}"  HorizontalAlignment="Left"  Width="40" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="2" Grid.Column="4"  Content="Комплекс" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="2" Grid.Column="5" Text="{Binding Path = LegalAddress.Complex}"   TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+
+            </Grid>
+
+            <TextBox  Grid.Row ="3" Text="{Binding Path = Phone}"  Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+            <TextBox  Grid.Row ="4" Text="{Binding Path = INN}" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Center" Width="90" MaxLength="12"/>
+            <TextBox  Grid.Row ="5" Text="{Binding Path = KPP}" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="70" MaxLength="9"/>
+            <TextBox  Grid.Row ="6" Text="{Binding Path = OGR_Number}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+            <TextBox  Grid.Row ="7" Text="{Binding Path = PaymentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+            <TextBox  Grid.Row ="8" Text="{Binding Path = CorrespondentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+
+            <TextBox  Grid.Row ="9" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
             <Button   Grid.Row ="9" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="75" Margin="194,3,0,0"/>
 
-            <TextBox  Grid.Row ="10" Grid.Column="1" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <Button   Grid.Row ="10" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="75" Margin="194,3,0,0"/>
+            <Grid Grid.Row="10" Grid.Column="1">
 
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.25*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.25*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.25*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row ="0" Grid.Column="0"  Content="Фамилия" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="0" Grid.Column="1" Text="{Binding Path = CompanyRepresentative.LastName}"  HorizontalAlignment="Left"  Width="121" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="0" Grid.Column="2"  Content="Имя" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="0" Grid.Column="3" Text="{Binding Path = CompanyRepresentative.FirstName}"  HorizontalAlignment="Left"   Width="121" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="0" Grid.Column="4"  Content="Отчество" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="0" Grid.Column="5" Text="{Binding Path = CompanyRepresentative.Patronymic}"  HorizontalAlignment="Left"   Width="121" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+                <Label Grid.Row ="1" Grid.Column="0"  Content="Должность" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
+                <TextBox Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding Path = CompanyRepresentative.Position}"  HorizontalAlignment="Left"  Width="200" TextWrapping="Wrap"  VerticalAlignment="Center"/>
+
+            </Grid>
+                
+            <Button Grid.Row ="11" Grid.Column="1" Content="Сохранить" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="75" Click="Button_Click"/>
         </Grid>
-        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="652,403,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
     </Grid>
 </Window>

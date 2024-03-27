@@ -10,14 +10,21 @@ namespace OOP_KURS
     public class Address: CloneSimple
     {
         public int ID;
+        public int? PostalCode { set; get; }
         public string Country { set; get; } = "Россия";
-        public string Region { set; get; } = "Республика Татарстан";
-        public string ShortRegion { get; }
+        public string Region { set; get; } //= "Республика Татарстан";
+        public string ShortRegion { set; get; }
         public string City { set; get; }
         public string Street { set; get; }
-        public ushort House { set; get; }
-        public ushort AppartNumber { set; get; }
+        public ushort? House { set; get; }
+        public ushort? AppartNumber { set; get; }
         public string Complex { set; get; }
         public string Info { set; get; }
+
+
+        public string FullName
+        {
+            get { return string.Format("{0} {1}", Country, Region); }
+        }
     }
 }
