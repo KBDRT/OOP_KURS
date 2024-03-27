@@ -20,6 +20,8 @@ namespace OOP_KURS
     public partial class CustomerForm : Window
     {
         Customer Client = new Customer();
+
+        int chel = 1;
         public CustomerForm()
         {
             InitializeComponent();
@@ -28,7 +30,15 @@ namespace OOP_KURS
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Worker.AddNewCustomer(Client);
+
+            Bank bnk = new Bank() { Name = "ВТБ", ID = chel };
+            chel++;
+
+            Client.Bank = bnk;
+
+            Customer Client2 = (Customer)Client.Clone();
+
+            ReferenceHelper.Add(Client2);
         }
     }
 }

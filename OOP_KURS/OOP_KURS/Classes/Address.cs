@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    public class Address
+    // Адрес
+    public class Address: CloneSimple
     {
-        public int PostalCode { set; get; }
+        public int ID;
         public string Country { set; get; } = "Россия";
         public string Region { set; get; } = "Республика Татарстан";
         public string ShortRegion { get; }

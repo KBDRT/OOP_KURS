@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
+    // Типы документов
     public class TypeDocument
     {
-        public uint TypeCode { set; get; }
+        public int ID;
         public string Name { set; get; }
         public string Info { set; get; }
     }

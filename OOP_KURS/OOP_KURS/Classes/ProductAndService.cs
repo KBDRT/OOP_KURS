@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    class ProductAndService
+    // Товары и услуги
+    class ProductAndService : CloneSimple
     {
+        public int ID;
         public string FullName { set; get; }
         public string Type { set; get; }
         public Unit UnitOfMeasurement { set; get; }

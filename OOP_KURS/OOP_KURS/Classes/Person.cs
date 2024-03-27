@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    public class Person
+    // Предствитель компании
+    public class Person : CloneSimple
     {
+        public int ID;
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Patronymic { get; set; }

@@ -27,7 +27,7 @@ namespace OOP_KURS
             InitializeComponent();
 
             FieldCatalog.SetColumnsForDataGrid(DataGrid, "Customer");
-            DataGrid.ItemsSource = Worker.Customers;
+            DataGrid.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace OOP_KURS
             {
                 //Type userType = Type.GetType("OOP_KURS.Customer");
 
-                Worker.DeleteCustomer(DataGrid.SelectedItems.OfType<Customer>().ToList());
+                //Worker.DeleteCustomer(DataGrid.SelectedItems.OfType<Customer>().ToList());
             }
         }
     }

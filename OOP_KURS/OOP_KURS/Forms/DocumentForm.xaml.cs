@@ -23,11 +23,11 @@ namespace OOP_KURS
         {
             InitializeComponent();
 
-            ComboBox_DocType.ItemsSource = Worker.Types;
-            ComboBox_DocType.DisplayMemberPath = "Name";
+            //ComboBox_DocType.ItemsSource = Worker.Types;
+            //ComboBox_DocType.DisplayMemberPath = "Name";
 
-            ComboBox_Customer.ItemsSource = Worker.Customers;
-            ComboBox_Customer.DisplayMemberPath = "Name";
+            //ComboBox_Customer.ItemsSource = Worker.Customers;
+            //ComboBox_Customer.DisplayMemberPath = "Name";
         }
     }
 }

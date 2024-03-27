@@ -12,6 +12,7 @@ using System.Windows.Data;
 
 namespace OOP_KURS
 {
+    // Класс подготовки полей для форм
     public static class FieldCatalog
     {
         static private List<FieldCatalogClass> FieldsValues = new List<FieldCatalogClass>();

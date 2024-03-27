@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    class Document
+    // Документ
+    class Document : CloneSimple
     {
-        public uint ID { get; }
+        public int ID;
         public uint Number { set; get; }
         public TypeDocument Type { set; get; }
 

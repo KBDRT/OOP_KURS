@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOP_KURS
 {
-    public class Bank
+    // Банк
+    public class Bank : CloneSimple
     {
+        public int ID;
         public string Name { get; set; }
         public int BIK { get; set; }
     }
