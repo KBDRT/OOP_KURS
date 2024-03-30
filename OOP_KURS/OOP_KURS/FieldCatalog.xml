@@ -3,15 +3,15 @@
 	<Section name="Customer">
 		<Name> Название компании </Name>
 		<Form> Форма собственности </Form>
-		<LegalAddress> Юр. Адрес</LegalAddress>
+		<LegalAddress BindingName ="LegalAddress.FullName" ReadOnly ="X"> Юр. Адрес</LegalAddress>
 		<Phone> Телефон </Phone>
 		<INN> ИНН </INN>
 		<KPP> КПП </KPP>
 		<OGR_Number> ОГРНИП </OGR_Number>
 		<PaymentAccount> р. счет</PaymentAccount>
 		<CorrespondentAccount> к.счет </CorrespondentAccount>
-		<Bank> Банк </Bank>
-		<CompanyRepresentative> Представитель </CompanyRepresentative>
+		<Bank BindingName ="Bank.ViewName" ReadOnly ="X"> Банк </Bank>
+		<CompanyRepresentative BindingName ="CompanyRepresentative.ViewName" ReadOnly ="X"> Представитель </CompanyRepresentative>
 	</Section>
 
 	<Section name="Address">

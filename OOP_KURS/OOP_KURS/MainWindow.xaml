@@ -21,15 +21,14 @@
                 <MenuItem x:Name="Btn_Customer" Header="Заказчики" Click="Open_Reference_Form"></MenuItem>
                 <MenuItem  Click="Open_Reference_Form" Header="Товары/услуги"></MenuItem>
                 <Separator />
-                <MenuItem x:Name="Btn_Address" Header="Адреса" Click="Open_Reference_Form"></MenuItem>
                 <MenuItem x:Name="Btn_Bank" Header="Банки"  Click="Open_Reference_Form"></MenuItem>
                 <MenuItem Header="Единицы измерения" Click="Open_Reference_Form"></MenuItem>
-                <MenuItem x:Name="Btn_Person" Header="Представитель" Click="Open_Reference_Form"></MenuItem>
 
             </MenuItem>
             <MenuItem Header="Настройки">
 
             </MenuItem>
         </Menu>
+        <Label Content="Создано документов:" HorizontalAlignment="Left" Margin="54,53,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

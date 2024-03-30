@@ -11,6 +11,16 @@ namespace OOP_KURS
     {
         public int ID;
         public string Name { get; set; }
-        public int BIK { get; set; }
+        public int? BIK { get; set; }
+
+        public string ViewName
+        {
+            get {
+                string ret_val = Name;
+                if (BIK != null)
+                    ret_val += ", " + BIK;
+                return ret_val; 
+            }   
+        }
     }
 }

@@ -35,7 +35,7 @@
             <Label Grid.Row ="3" Content="Телефон" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" FontWeight="Bold" />
             <Label Grid.Row ="4" Content="ИНН" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
             <Label Grid.Row ="5" Content="КПП" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" FontWeight="Bold" />
-            <Label Grid.Row ="6" Content="ОГРН" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
+            <Label Grid.Row ="6" Content="ОГРН/ОГРНИП" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
             <Label Grid.Row ="7" Content="р/счет" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2,0,3" FontWeight="Bold" />
             <Label Grid.Row ="8" Content="к/счет" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,3,0,2" FontWeight="Bold" />
             <Label Grid.Row ="9" Content="Банк" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Margin="0,2" FontWeight="Bold" />
@@ -55,7 +55,7 @@
             <Separator Grid.Row ="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
             <Separator Grid.Row ="10" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Bottom"></Separator>
 
-           <!--<Separator   VerticalAlignment="Bottom" ></Separator>-->
+            <!--<Separator   VerticalAlignment="Bottom" ></Separator>-->
 
             <Rectangle Grid.Row ="0" Grid.Column="0" Grid.RowSpan="11" Margin="0,0,5,0" HorizontalAlignment="Right"   VerticalAlignment="Stretch" Fill="Black"  Width="0.5"/>
 
@@ -92,7 +92,7 @@
                 <TextBox Grid.Row ="1" Grid.Column="1" Text="{Binding Path = LegalAddress.City}"    TextWrapping="Wrap"  VerticalAlignment="Center"/>
 
                 <Label Grid.Row ="1" Grid.Column="2"  Content="Индекс" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
-                <TextBox Grid.Row ="1" Grid.Column="3" Text="{Binding Path = LegalAddress.PostalCode}"  MaxLength="6" TextWrapping="Wrap"  Width="48" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TextBox_PostalCode" Grid.Row ="1" Grid.Column="3" Text="{Binding Path = LegalAddress.PostalCode}"  MaxLength="6" TextWrapping="Wrap"  Width="48" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
                 <Label Grid.Row ="1" Grid.Column="4"  Content="Улица" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" Width="121"/>
                 <TextBox Grid.Row ="1" Grid.Column="5" Text="{Binding Path = LegalAddress.Street}"   TextWrapping="Wrap"  VerticalAlignment="Center"/>
@@ -110,11 +110,11 @@
             </Grid>
 
             <TextBox  Grid.Row ="3" Text="{Binding Path = Phone}"  Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="4" Text="{Binding Path = INN}" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Center" Width="90" MaxLength="12"/>
-            <TextBox  Grid.Row ="5" Text="{Binding Path = KPP}" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="70" MaxLength="9"/>
-            <TextBox  Grid.Row ="6" Text="{Binding Path = OGR_Number}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="7" Text="{Binding Path = PaymentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
-            <TextBox  Grid.Row ="8" Text="{Binding Path = CorrespondentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+            <TextBox  x:Name="TextBox_INN" Grid.Row ="4" Text="{Binding Path = INN}" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Center" Width="90" MaxLength="12"/>
+            <TextBox  x:Name="TextBox_KPP" Grid.Row ="5" Text="{Binding Path = KPP}" Grid.Column="1" HorizontalAlignment="Left"  TextWrapping="Wrap"  VerticalAlignment="Center" Width="70" MaxLength="9"/>
+            <TextBox  x:Name="TextBox_OGR" Grid.Row ="6" Text="{Binding Path = OGR_Number}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+            <TextBox  x:Name="TextBox_Pay" Grid.Row ="7" Text="{Binding Path = PaymentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+            <TextBox  x:Name="TextBox_Cor" Grid.Row ="8" Text="{Binding Path = CorrespondentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
 
             <TextBox  Grid.Row ="9" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
             <Button   Grid.Row ="9" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="75" Margin="194,3,0,0"/>
@@ -148,8 +148,8 @@
                 <TextBox Grid.Row ="1" Grid.Column="1" Grid.ColumnSpan="5" Text="{Binding Path = CompanyRepresentative.Position}"  HorizontalAlignment="Left"  Width="200" TextWrapping="Wrap"  VerticalAlignment="Center"/>
 
             </Grid>
-                
-            <Button Grid.Row ="11" Grid.Column="1" Content="Сохранить" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="75" Click="Button_Click"/>
+
+            <Button Grid.Row ="11" Grid.Column="1" Content="Добавить" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="75" Click="Button_Click" Margin="0,2,0,0"/>
         </Grid>
 
     </Grid>

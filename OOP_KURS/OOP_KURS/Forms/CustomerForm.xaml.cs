@@ -21,26 +21,40 @@ namespace OOP_KURS
     {
         Customer Client = new Customer();
 
-        int chel = 1;
         public CustomerForm()
         {
             InitializeComponent();
+
+            // to:do
+            TextBox_PostalCode.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+            TextBox_INN.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+            TextBox_KPP.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+            TextBox_OGR.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+            TextBox_Pay.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+            TextBox_Cor.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+
             Client.LegalAddress = new Address();
             Client.CompanyRepresentative = new Person();
+            Client.Bank = new Bank();
+
+
             DataContext = Client;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            Bank bnk = new Bank() { Name = "ВТБ", ID = chel };
-            chel++;
-
-            Client.Bank = bnk;
 
             Customer Client2 = (Customer)Client.Clone();
+            Client2.LegalAddress = (Address)Client.LegalAddress.Clone();
+            Client2.CompanyRepresentative = (Person)Client.CompanyRepresentative.Clone();
+            Client2.Bank = (Bank)Client.Bank.Clone();
+
 
             ReferenceHelper.Add(Client2);
+
+            Utils.ClearPropertiesValue(Client);
+            Client.LegalAddress.Country = "Россия";
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -12,6 +12,25 @@ using System.Windows.Data;
 
 namespace OOP_KURS
 {
+    public class FieldCatalogClass
+    {
+        public string ClassName;
+        public List<FieldCatalogElem> Elems = new List<FieldCatalogElem>();
+    }
+
+    public class FieldCatalogElem
+    {
+        public string FieldName;
+        public string FieldText;
+        public List<FieldCatalogAttr> FieldAttr = new List<FieldCatalogAttr>();
+    }
+
+    public class FieldCatalogAttr
+    {
+        public string Name;
+        public string Value;
+    }
+
     // Класс подготовки полей для форм
     public static class FieldCatalog
     {
@@ -33,34 +52,70 @@ namespace OOP_KURS
             foreach (XElement ElemSection in xdoc.Elements("Section"))
             {
                 FieldCatalogClass CatalogClass = new FieldCatalogClass { ClassName = (string)ElemSection.Attribute("name") };
-                foreach (var Elem in ElemSection.Elements())
+                foreach (XElement Elem in ElemSection.Elements())
                 {
-                    CatalogClass.Elems.Add(new FieldCatalogElem { FieldName = Elem.Name.LocalName, FieldText = Elem.Value });
+
+                    List<FieldCatalogAttr> AttrList = new List<FieldCatalogAttr>();
+
+                    foreach (XAttribute Attr in Elem.Attributes())
+                    {
+                        AttrList.Add(new FieldCatalogAttr { Name = Attr.Name.ToString(), Value = Attr.Value });
+                    }
+
+                    CatalogClass.Elems.Add(new FieldCatalogElem { FieldName = Elem.Name.LocalName, FieldText = Elem.Value, FieldAttr = AttrList });
+
                 }
                 FieldsValues.Add(CatalogClass);
             }
         }
 
         // Получить текст к полю из класса
-        static public string GetFieldTextForClass(ref string FieldName, string ClassName)
+        static public string GetFieldTextByFC(ref string FieldName, FieldCatalogClass FC, out FieldCatalogElem Elem)
         {
-            FieldCatalogClass CurrentFieldCatalog = FieldsValues.Find(x => x.ClassName == ClassName);
-
             string Text = null;
-            FieldCatalogElem Elem = null;
-            if (CurrentFieldCatalog != null)
+            Elem = null;
+            if (FC != null)
             {
                 ParseFieldNameBtw(ref FieldName);
                 Text = FieldName;
-                Elem = CurrentFieldCatalog.Elems.Find(x => x.FieldName == Text);
-                Text = null;
+                Elem = GetFieldCatalogElem(FC, Text);
                 if (Elem != null)
                 {
                     Text = Elem.FieldText;
+                    FieldName = GetAttrValueForElem("BindingName", Elem) ?? FieldName; // Подменить имя поля по атрибуту для привязки
+                }
+                else
+                {
+                    Text = null;
                 }
             }
 
             return Text;
+        }
+
+        static private FieldCatalogClass GetFieldCatalog(string ClassName)
+        {
+            return FieldsValues.Find(x => x.ClassName == ClassName);
+        }
+
+        static private FieldCatalogElem GetFieldCatalogElem(FieldCatalogClass FieldCatalog, string FieldName)
+        {
+            if (FieldCatalog is null || String.IsNullOrEmpty(FieldName))
+                return null;
+            return FieldCatalog.Elems.Find(x => x.FieldName == FieldName);
+        }
+
+
+        // Получить атрибуты элемента
+        static private string GetAttrValueForElem(string AttrName, FieldCatalogElem Elem)
+        {
+            if (Elem.FieldAttr.Count == 0)
+                return null;
+
+            FieldCatalogAttr Attr = Elem.FieldAttr.Find(x => x.Name == AttrName);
+            if (Attr != null)
+                return Attr.Value;
+            return null;
         }
 
         // Получить из строки подстроку между двумя символами
@@ -75,46 +130,40 @@ namespace OOP_KURS
             }
         }
 
+        static private bool CheckReadOnlyField(FieldCatalogElem Elem)
+        {
+            string val = GetAttrValueForElem("ReadOnly", Elem);
+
+            return val == "X";
+        }
+
         // Добавить в Grid поля 
         static public void SetColumnsForDataGrid(FilterDataGrid.FilterDataGrid Grid, string ClassName)
         {
             Type type = Type.GetType("OOP_KURS." + ClassName);
 
-            foreach (FieldInfo field in type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
+            FieldCatalogClass CurrentFieldCatalog = GetFieldCatalog(ClassName);
+
+            foreach (PropertyInfo property in type.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
             {
-                string FieldName = field.Name;
-                string FieldText = GetFieldTextForClass(ref FieldName, ClassName);
+                FieldCatalogElem Element;
+                string FieldName = property.Name;
+                string FieldText = GetFieldTextByFC(ref FieldName, CurrentFieldCatalog, out Element);
 
                 if (FieldText == null)
                     continue;
-
-
-                // to:do
-                if (FieldName == "LegalAddress")
-                    FieldName = "LegalAddress.FullName";
 
                 DataGridTextColumn textColumn = new DataGridTextColumn
                 {
                     Header = FieldText,
                     Binding = new Binding(FieldName),
-                    Width = DataGridLength.Auto
+                    Width = DataGridLength.Auto,
+                    IsReadOnly = CheckReadOnlyField(Element)
                 };
                 Grid.Columns.Add(textColumn);
             }
         }
 
-    }
-
-    class FieldCatalogClass
-    {
-        public string ClassName;
-        public List<FieldCatalogElem> Elems = new List<FieldCatalogElem>();
-    }
-
-    class FieldCatalogElem
-    {
-        public string FieldName;
-        public string FieldText;
     }
 
 }
