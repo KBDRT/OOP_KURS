@@ -33,5 +33,10 @@ namespace OOP_KURS
                 View.Show();
             }
         }
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+            DocumentForm View = new DocumentForm();
+            View.Show();
+        }
     }
 }

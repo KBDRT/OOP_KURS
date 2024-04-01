@@ -23,8 +23,12 @@ namespace OOP_KURS
         {
             InitializeComponent();
 
-            //ComboBox_DocType.ItemsSource = Worker.Types;
-            //ComboBox_DocType.DisplayMemberPath = "Name";
+            ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
+            ComboBox_DocType.DisplayMemberPath = "Name";
+
+            if (ComboBox_DocType.Items.Count > 0)
+                ComboBox_DocType.SelectedIndex = 0;
+
 
             //ComboBox_Customer.ItemsSource = Worker.Customers;
             //ComboBox_Customer.DisplayMemberPath = "Name";

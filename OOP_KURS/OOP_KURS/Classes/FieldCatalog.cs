@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows;
 
 namespace OOP_KURS
 {
@@ -16,6 +17,7 @@ namespace OOP_KURS
     {
         public string ClassName;
         public List<FieldCatalogElem> Elems = new List<FieldCatalogElem>();
+        public List<FieldCatalogAttr> WindowProperties = new List<FieldCatalogAttr>();
     }
 
     public class FieldCatalogElem
@@ -34,7 +36,7 @@ namespace OOP_KURS
     // Класс подготовки полей для форм
     public static class FieldCatalog
     {
-        static private List<FieldCatalogClass> FieldsValues = new List<FieldCatalogClass>();
+        static private List<FieldCatalogClass> ClassValues = new List<FieldCatalogClass>();
 
         private const string FilePath = @"K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\FieldCatalog.xml";
 
@@ -65,7 +67,15 @@ namespace OOP_KURS
                     CatalogClass.Elems.Add(new FieldCatalogElem { FieldName = Elem.Name.LocalName, FieldText = Elem.Value, FieldAttr = AttrList });
 
                 }
-                FieldsValues.Add(CatalogClass);
+
+                foreach (XAttribute Attr in ElemSection.Attributes())
+                {
+                    if (Attr.Name.ToString() != "name")
+                        CatalogClass.WindowProperties.Add(new FieldCatalogAttr { Name = Attr.Name.ToString(), Value = Attr.Value });
+                }
+
+
+                ClassValues.Add(CatalogClass);
             }
         }
 
@@ -95,7 +105,7 @@ namespace OOP_KURS
 
         static private FieldCatalogClass GetFieldCatalog(string ClassName)
         {
-            return FieldsValues.Find(x => x.ClassName == ClassName);
+            return ClassValues.Find(x => x.ClassName == ClassName);
         }
 
         static private FieldCatalogElem GetFieldCatalogElem(FieldCatalogClass FieldCatalog, string FieldName)
@@ -162,6 +172,32 @@ namespace OOP_KURS
                 };
                 Grid.Columns.Add(textColumn);
             }
+        }
+
+        public static void SetPropertiesForWindow(Window Window, string ClassName)
+        {
+
+            FieldCatalogClass FC = GetFieldCatalog(ClassName);
+
+            if (FC != null)
+            {
+                Type myType = typeof(Window);
+                foreach (FieldCatalogAttr prop in FC.WindowProperties)
+                {
+                    PropertyInfo Info = myType.GetProperty(prop.Name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
+
+                    if (Info != null)
+                    {
+                        try
+                        {
+                            Info?.SetValue(Window, Convert.ToDouble(prop.Value));
+                        }
+                        catch { }
+                    }             
+                }
+            }
+
+
         }
 
     }

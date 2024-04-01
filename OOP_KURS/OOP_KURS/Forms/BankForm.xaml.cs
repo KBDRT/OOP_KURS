@@ -19,11 +19,27 @@ namespace OOP_KURS
     /// </summary>
     public partial class BankForm : Window
     {
+
+        public Bank Bank = new Bank();
+
         public BankForm()
         {
             InitializeComponent();
 
             TextBox_BIK.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
+
+            DataContext = Bank;
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Bank BankCopy = (Bank)Bank.Clone();
+
+            ReferenceHelper.Add(BankCopy);
+
+            //Utils.ClearPropertiesValue(Bank);
+
         }
     }
 }

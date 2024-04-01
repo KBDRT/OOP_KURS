@@ -19,8 +19,9 @@ namespace OOP_KURS
     /// </summary>
     public partial class CustomerForm : Window
     {
-        Customer Client = new Customer();
+        public Customer Client = new Customer();
 
+        public DynamicTabForm BankView = new DynamicTabForm("Bank", "Sel");
         public CustomerForm()
         {
             InitializeComponent();
@@ -35,8 +36,8 @@ namespace OOP_KURS
 
             Client.LegalAddress = new Address();
             Client.CompanyRepresentative = new Person();
-            Client.Bank = new Bank();
 
+            Client.Bank = BankView.BankForm.Bank;
 
             DataContext = Client;
         }
@@ -44,12 +45,10 @@ namespace OOP_KURS
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-
             Customer Client2 = (Customer)Client.Clone();
             Client2.LegalAddress = (Address)Client.LegalAddress.Clone();
             Client2.CompanyRepresentative = (Person)Client.CompanyRepresentative.Clone();
             Client2.Bank = (Bank)Client.Bank.Clone();
-
 
             ReferenceHelper.Add(Client2);
 
@@ -57,10 +56,9 @@ namespace OOP_KURS
             Client.LegalAddress.Country = "Россия";
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            DynamicTabForm AddressForm = new DynamicTabForm("Address", "Sel");
-            AddressForm.Show();
+            BankView.Show();
         }
     }
 }

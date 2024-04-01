@@ -24,10 +24,10 @@
 		<House> Дом </House>
 		<AppartNumber>Квартира</AppartNumber>
 		<Complex> Комплекс </Complex>
-		<Info> Доп. информация </Info>
+		<Info> Доп. информация </Info> 
 	</Section>
 
-	<Section name="Bank">
+	<Section name="Bank"  Width="700" Height ="300">
 		<Name> Название </Name>
 		<BIK>  БИК </BIK>
 	</Section>

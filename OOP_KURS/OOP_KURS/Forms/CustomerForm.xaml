@@ -116,8 +116,8 @@
             <TextBox  x:Name="TextBox_Pay" Grid.Row ="7" Text="{Binding Path = PaymentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
             <TextBox  x:Name="TextBox_Cor" Grid.Row ="8" Text="{Binding Path = CorrespondentAccount}" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
 
-            <TextBox  Grid.Row ="9" Grid.Column="1" HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
-            <Button   Grid.Row ="9" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="75" Margin="194,3,0,0"/>
+            <TextBox  Grid.Row ="9" Grid.Column="1" IsReadOnly="True"   Text="{Binding Path = Bank.ViewName, Mode=OneWay}"  HorizontalAlignment="Left"   TextWrapping="Wrap"  VerticalAlignment="Center" Width="120"/>
+            <Button   Grid.Row ="9" Grid.Column="1" Content="Выбрать" HorizontalAlignment="Left"  VerticalAlignment="Center" Width="75" Margin="194,3,0,0" Click="Button_Click_2"/>
 
             <Grid Grid.Row="10" Grid.Column="1">
 

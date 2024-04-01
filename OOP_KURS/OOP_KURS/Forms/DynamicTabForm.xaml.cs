@@ -23,18 +23,29 @@ namespace OOP_KURS
     public partial class DynamicTabForm : Window
     {
         private readonly string RefName;
+
+        public CustomerForm CustomerView;
+        public BankForm BankForm;
+
         public DynamicTabForm(string ReferenceName, string Mode = "Show")
         {
+
+
             InitializeComponent();
 
             RefName = ReferenceName;
 
-
             if (Mode != "Sel")
                 LastRow.Height = new GridLength(0);
 
+            
+
             FieldCatalog.SetColumnsForDataGrid(DataGrid, RefName);
+
             DataGrid.ItemsSource = ReferenceHelper.GetElementsByRefName(RefName);
+
+            FieldCatalog.SetPropertiesForWindow(MainWindow, RefName);
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,7 +53,7 @@ namespace OOP_KURS
             switch (RefName)
             {
                 case "Customer":
-                    CustomerForm CustomerView = new CustomerForm();
+                    CustomerView = new CustomerForm();
                     CustomerView.Show();
                     break;
                 case "Address":
@@ -50,7 +61,7 @@ namespace OOP_KURS
                     //AddressForm.Show();
                     break;
                 case "Bank":
-                    BankForm BankForm = new BankForm();
+                    BankForm = new BankForm();
                     BankForm.Show();
                     break;
             }
@@ -62,11 +73,29 @@ namespace OOP_KURS
             if (DataGrid.SelectedItems.Count > 0)
             {
                 List<dynamic> SelectedItemsList = DataGrid.SelectedItems.OfType<dynamic>().ToList();
-                foreach (var chel in SelectedItemsList)
+                foreach (var Item in SelectedItemsList)
                 {
-                    ReferenceHelper.Delete(chel);
+                    ReferenceHelper.Delete(Item);
                 }
             }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid.SelectedItems.Count > 0)
+            {
+                List<dynamic> SelectedItemsList = DataGrid.SelectedItems.OfType<dynamic>().ToList();
+                foreach (Bank Item in SelectedItemsList)
+                {
+                    BankForm.Bank.Name = Item.Name;
+                    BankForm.Bank.BIK = Item.BIK;
+                    BankForm.Bank.GetView();
+
+                    //ferenceHelper.SetCurrentBank(Item.Name, Item.BIK);
+                }
+            }
+
+            this.Close();
         }
     }
 }

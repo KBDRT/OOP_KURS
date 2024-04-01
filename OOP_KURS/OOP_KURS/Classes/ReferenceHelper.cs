@@ -59,6 +59,7 @@ namespace OOP_KURS
         static ReferenceHelper()
         {
             FillAltNameDict();
+            InitTypeDocs();
         }
 
         private static void FillAltNameDict()
@@ -68,6 +69,14 @@ namespace OOP_KURS
                 AltComponentsName.Add(Comp.Key.Name, Comp.Key);
             }
         }
+
+        private static void InitTypeDocs()
+        {
+            Add(new TypeDocument { Name = "СЧЕТ" });
+            Add(new TypeDocument { Name = "АКТ ВЫПОЛНЕННЫХ РАБОТ" });
+            Add(new TypeDocument { Name = "ТОВАРНАЯ НАКЛАДНАЯ" });
+        }
+
     }
 
 }

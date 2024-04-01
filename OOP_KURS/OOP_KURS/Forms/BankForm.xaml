@@ -5,33 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_KURS"
         mc:Ignorable="d"
-        Title="DynamicForm" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Банк" Height="153" Width="534" WindowStartupLocation="CenterScreen">
     <Grid x:Name="rootWindow">
-        <Grid HorizontalAlignment="Left" Height="142" Margin="58,36,0,0" VerticalAlignment="Top" Width="622" RenderTransformOrigin="0.5,0.5">
-            <Grid.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.258"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Grid.RenderTransform>
-
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="65*"></ColumnDefinition>
-                <ColumnDefinition Width="93*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row ="0" Content="Наименование банка" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26"  Width="137"/>
-            <Label Grid.Row ="1" Content="Банковский идентификационный код (БИК)" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26"  Width="251"/>
+            <Label Grid.Row ="0" Grid.Column="0" Content="Наименование банка" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" />
+            <Label Grid.Row ="1" Grid.Column="0" Content="Банковский идентификационный код (БИК)" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26"  />
 
-            <TextBox Grid.Row ="0" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="349" />
-            <TextBox Grid.Row ="1" Grid.Column="1" x:Name ="TextBox_BIK" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" MaxLength="9"  />
+            <TextBox Grid.Row ="0" Text="{Binding Path = Name}" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Center"  Width="250" />
+            <TextBox Grid.Row ="1" Text="{Binding Path = BIK}" Grid.Column="1" x:Name ="TextBox_BIK" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" MaxLength="9"  Width="70"/>
+
+            <Button Content="Добавить" Grid.Column="1" Grid.Row ="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="75" Click="Button_Click" />
+
+
 
         </Grid>
     </Grid>

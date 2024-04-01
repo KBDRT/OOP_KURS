@@ -15,7 +15,7 @@
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Документ">
                 <MenuItem Header="Просмотр"></MenuItem>
-                <MenuItem Header="Создание"></MenuItem>
+                <MenuItem Header="Создание" Click="MenuItem_Click_1"></MenuItem>
             </MenuItem>
             <MenuItem Header="Справочники">
                 <MenuItem x:Name="Btn_Customer" Header="Заказчики" Click="Open_Reference_Form"></MenuItem>

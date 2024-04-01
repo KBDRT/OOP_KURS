@@ -10,17 +10,20 @@ namespace OOP_KURS
     public class Bank : CloneSimple
     {
         public int ID;
-        public string Name { get; set; }
-        public int? BIK { get; set; }
 
-        public string ViewName
+        private string _Name;
+        private int? _BIK;
+        private string _ViewName;
+
+        public string Name { get => _Name; set => SetValueField(ref _Name, value); }
+        public int? BIK { get => _BIK; set => SetValueField(ref _BIK, value); }
+        public string ViewName { get => _ViewName; set => SetValueField(ref _ViewName, value); }
+
+        public void GetView()
         {
-            get {
-                string ret_val = Name;
-                if (BIK != null)
-                    ret_val += ", " + BIK;
-                return ret_val; 
-            }   
+            ViewName = Name;
+            if (BIK != null)
+                ViewName += ", " + BIK;
         }
     }
 }
