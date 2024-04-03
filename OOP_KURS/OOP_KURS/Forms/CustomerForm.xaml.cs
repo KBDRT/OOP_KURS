@@ -37,7 +37,7 @@ namespace OOP_KURS
             Client.LegalAddress = new Address();
             Client.CompanyRepresentative = new Person();
 
-            Client.Bank = BankView.BankForm.Bank;
+            //Client.Bank = BankView.BankForm.Bank;
 
             DataContext = Client;
         }
@@ -48,7 +48,7 @@ namespace OOP_KURS
             Customer Client2 = (Customer)Client.Clone();
             Client2.LegalAddress = (Address)Client.LegalAddress.Clone();
             Client2.CompanyRepresentative = (Person)Client.CompanyRepresentative.Clone();
-            Client2.Bank = (Bank)Client.Bank.Clone();
+            //Client2.Bank = (Bank)Client.Bank.Clone();
 
             ReferenceHelper.Add(Client2);
 

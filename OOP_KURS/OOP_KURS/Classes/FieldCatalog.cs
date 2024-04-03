@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace OOP_KURS
 {
@@ -17,7 +18,7 @@ namespace OOP_KURS
     {
         public string ClassName;
         public List<FieldCatalogElem> Elems = new List<FieldCatalogElem>();
-        public List<FieldCatalogAttr> WindowProperties = new List<FieldCatalogAttr>();
+        public List<FieldCatalogAttr> Properties = new List<FieldCatalogAttr>();
     }
 
     public class FieldCatalogElem
@@ -32,6 +33,13 @@ namespace OOP_KURS
         public string Name;
         public string Value;
     }
+
+
+    //public static class FieldCatalogFunctions
+    //{
+        
+    //}
+
 
     // Класс подготовки полей для форм
     public static class FieldCatalog
@@ -71,7 +79,7 @@ namespace OOP_KURS
                 foreach (XAttribute Attr in ElemSection.Attributes())
                 {
                     if (Attr.Name.ToString() != "name")
-                        CatalogClass.WindowProperties.Add(new FieldCatalogAttr { Name = Attr.Name.ToString(), Value = Attr.Value });
+                        CatalogClass.Properties.Add(new FieldCatalogAttr { Name = Attr.Name.ToString(), Value = Attr.Value });
                 }
 
 
@@ -89,15 +97,8 @@ namespace OOP_KURS
                 ParseFieldNameBtw(ref FieldName);
                 Text = FieldName;
                 Elem = GetFieldCatalogElem(FC, Text);
-                if (Elem != null)
-                {
-                    Text = Elem.FieldText;
-                    FieldName = GetAttrValueForElem("BindingName", Elem) ?? FieldName; // Подменить имя поля по атрибуту для привязки
-                }
-                else
-                {
-                    Text = null;
-                }
+                Text = Elem?.FieldText;
+                FieldName = GetAttrValueForElem("BindingName", Elem) ?? FieldName; // Подменить имя поля по атрибуту для привязки
             }
 
             return Text;
@@ -110,23 +111,27 @@ namespace OOP_KURS
 
         static private FieldCatalogElem GetFieldCatalogElem(FieldCatalogClass FieldCatalog, string FieldName)
         {
-            if (FieldCatalog is null || String.IsNullOrEmpty(FieldName))
+            if (FieldCatalog is null || string.IsNullOrEmpty(FieldName))
                 return null;
             return FieldCatalog.Elems.Find(x => x.FieldName == FieldName);
         }
 
-
         // Получить атрибуты элемента
-        static private string GetAttrValueForElem(string AttrName, FieldCatalogElem Elem)
+        static private dynamic GetAttrValueForElem(string AttrName, FieldCatalogElem Elem)
         {
-            if (Elem.FieldAttr.Count == 0)
+            if (Elem?.FieldAttr.Count == 0)
                 return null;
 
-            FieldCatalogAttr Attr = Elem.FieldAttr.Find(x => x.Name == AttrName);
-            if (Attr != null)
-                return Attr.Value;
-            return null;
+            FieldCatalogAttr Attr = Elem?.FieldAttr.Find(x => x.Name == AttrName);
+            return Attr?.Value;
         }
+
+
+        static private dynamic GetAttrValueForSect(string ClassName, string AttrName)
+        {
+            return GetFieldCatalog(ClassName)?.Properties?.Find(x => x.Name == AttrName)?.Value;
+        }
+
 
         // Получить из строки подстроку между двумя символами
         static private void ParseFieldNameBtw(ref string FieldName, char LeftSymbol = '<', char RightSymbol = '>')
@@ -140,25 +145,37 @@ namespace OOP_KURS
             }
         }
 
-        static private bool CheckReadOnlyField(FieldCatalogElem Elem)
+        // Закрыть на ввод поле
+        private static bool CheckReadOnlyField(FieldCatalogElem Elem)
         {
             string val = GetAttrValueForElem("ReadOnly", Elem);
 
             return val == "X";
         }
 
+        // Ширина столбца
+        private static  DataGridLength GetWidth(FieldCatalogElem Elem)
+        {
+            string val = GetAttrValueForElem("WidthStar", Elem);
+
+            double width = val != null ? Convert.ToDouble (val) : 1.0;
+
+            return new DataGridLength(width, DataGridLengthUnitType.Star);
+        }
+
         // Добавить в Grid поля 
-        static public void SetColumnsForDataGrid(FilterDataGrid.FilterDataGrid Grid, string ClassName)
+        static public void SetColumnsForDataGrid(DataGrid Grid, string ClassName)
         {
             Type type = Type.GetType("OOP_KURS." + ClassName);
 
             FieldCatalogClass CurrentFieldCatalog = GetFieldCatalog(ClassName);
 
+            bool UsingDisplayIndex = Convert.ToBoolean(GetAttrValueForSect(ClassName, "UseDisplayIndex")) ?? false;
+
             foreach (PropertyInfo property in type.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
             {
-                FieldCatalogElem Element;
                 string FieldName = property.Name;
-                string FieldText = GetFieldTextByFC(ref FieldName, CurrentFieldCatalog, out Element);
+                string FieldText = GetFieldTextByFC(ref FieldName, CurrentFieldCatalog, out FieldCatalogElem Element);
 
                 if (FieldText == null)
                     continue;
@@ -167,37 +184,35 @@ namespace OOP_KURS
                 {
                     Header = FieldText,
                     Binding = new Binding(FieldName),
-                    Width = DataGridLength.Auto,
-                    IsReadOnly = CheckReadOnlyField(Element)
+                    Width = GetWidth(Element),//DataGridLength.Auto,
+                    IsReadOnly = CheckReadOnlyField(Element),
                 };
+
+                textColumn.Binding.StringFormat = GetAttrValueForElem("StringFormat", Element); // Формат строки
+
+                if (UsingDisplayIndex)
+                {
+                    textColumn.DisplayIndex = Convert.ToInt32(GetAttrValueForElem("DisplayIndex", Element)) -1; // Порядок столбца
+                }
+
                 Grid.Columns.Add(textColumn);
             }
         }
 
+        // Установка свойств для окна формы
         public static void SetPropertiesForWindow(Window Window, string ClassName)
         {
-
             FieldCatalogClass FC = GetFieldCatalog(ClassName);
-
-            if (FC != null)
+            Type myType = typeof(Window);
+            foreach (FieldCatalogAttr prop in FC?.Properties)
             {
-                Type myType = typeof(Window);
-                foreach (FieldCatalogAttr prop in FC.WindowProperties)
+                PropertyInfo Info = myType.GetProperty(prop.Name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
+                try
                 {
-                    PropertyInfo Info = myType.GetProperty(prop.Name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
-
-                    if (Info != null)
-                    {
-                        try
-                        {
-                            Info?.SetValue(Window, Convert.ToDouble(prop.Value));
-                        }
-                        catch { }
-                    }             
+                    Info?.SetValue(Window, Convert.ToDouble(prop.Value));
                 }
+                catch { }          
             }
-
-
         }
 
     }

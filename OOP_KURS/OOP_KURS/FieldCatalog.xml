@@ -27,7 +27,7 @@
 		<Info> Доп. информация </Info> 
 	</Section>
 
-	<Section name="Bank"  Width="700" Height ="300">
+	<Section name="Bank" Width="700" Height ="300">
 		<Name> Название </Name>
 		<BIK>  БИК </BIK>
 	</Section>
@@ -39,6 +39,13 @@
 		<Position>  Должность </Position>
 	</Section>
 
+	<Section name="Position" UseDisplayIndex ="True">
+		<Number WidthStar="1" DisplayIndex ="1" ReadOnly="X"> № п.п</Number>
+		<FullName WidthStar="4" DisplayIndex ="2"> Название </FullName>
+		<Amount WidthStar="2" DisplayIndex ="3" StringFormat ="{0:C}"> Цена за 1</Amount>
+		<Quantity WidthStar="2" DisplayIndex ="4"> Кол-во</Quantity>
+		<TotalAmount WidthStar="2" DisplayIndex ="5" ReadOnly="X" StringFormat ="{0:C}"> Общая сумма</TotalAmount>
+	</Section>
 
 
 </FieldCatalog>

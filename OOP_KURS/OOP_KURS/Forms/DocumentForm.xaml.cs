@@ -19,6 +19,9 @@ namespace OOP_KURS
     /// </summary>
     public partial class DocumentForm : Window
     {
+
+        Document DocTemp = new Document();
+
         public DocumentForm()
         {
             InitializeComponent();
@@ -30,8 +33,19 @@ namespace OOP_KURS
                 ComboBox_DocType.SelectedIndex = 0;
 
 
+
+            FieldCatalog.SetColumnsForDataGrid(DataGrid_Pos, "Position");
+
+            DataGrid_Pos.ItemsSource = DocTemp.Positions;
+
+
             //ComboBox_Customer.ItemsSource = Worker.Customers;
             //ComboBox_Customer.DisplayMemberPath = "Name";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DocTemp.Positions.Add(new Position{Number = DocTemp.Positions.Count + 1 });
         }
     }
 }

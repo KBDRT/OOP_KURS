@@ -22,11 +22,16 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="522,23,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="30"/>
         <DatePicker HorizontalAlignment="Left" Margin="732,21,0,0" VerticalAlignment="Top" Width="153"/>
         <Label Content="Дата документа:" HorizontalAlignment="Left" Margin="615,19,0,0" VerticalAlignment="Top" Width="98"/>
-        <ComboBox x:Name="ComboBox_Customer" HorizontalAlignment="Left" Margin="132,64,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="ComboBox_Customer" HorizontalAlignment="Left" Margin="132,64,0,0" VerticalAlignment="Top" Width="220"/>
         <Label Content="Заказчик:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,60,0,0"/>
-        <ComboBox HorizontalAlignment="Left" Margin="732,68,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" Margin="732,68,0,0" VerticalAlignment="Top" Width="153"/>
         <Label Content="Исполнитель:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,64,0,0"/>
-        <DataGrid HorizontalAlignment="Left" Height="596" Margin="36,123,0,0" VerticalAlignment="Top" Width="945"/>
+
+        <DataGrid Language="ru-RU" CanUserAddRows="False" RowHeaderWidth="30"  AutoGenerateColumns="False" x:Name="DataGrid_Pos"  HorizontalAlignment="Left" Height="522" Margin="36,197,0,0" VerticalAlignment="Top" Width="945"/>
+        
+        <Button Content="+" HorizontalAlignment="Left" Margin="36,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="116,156,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.507,-0.55"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
