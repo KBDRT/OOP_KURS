@@ -19,10 +19,10 @@
             </MenuItem>
             <MenuItem Header="Справочники">
                 <MenuItem x:Name="Btn_Customer" Header="Заказчики" Click="Open_Reference_Form"></MenuItem>
-                <MenuItem  Click="Open_Reference_Form" Header="Товары/услуги"></MenuItem>
+                <MenuItem x:Name="Btn_ProductAndService" Click="Open_Reference_Form" Header="Товары/услуги"></MenuItem>
                 <Separator />
                 <MenuItem x:Name="Btn_Bank" Header="Банки"  Click="Open_Reference_Form"></MenuItem>
-                <MenuItem Header="Единицы измерения" Click="Open_Reference_Form"></MenuItem>
+                <MenuItem x:Name="Btn_Unit" Header="Единицы измерения" Click="Open_Reference_Form"></MenuItem>
 
             </MenuItem>
             <MenuItem Header="Настройки">

@@ -58,7 +58,7 @@ namespace OOP_KURS
         // Очистить свойства из объекта
         public static void ClearPropertiesValue(object obj)
         {
-            foreach (PropertyInfo fi in obj.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).ToArray())
+            foreach (PropertyInfo fi in obj?.GetType()?.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.ToArray())
             {
                 if (!fi.CanWrite)
                     continue;

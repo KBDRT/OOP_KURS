@@ -20,10 +20,10 @@ namespace OOP_KURS
     public partial class BankForm : Window
     {
 
-        public Bank Bank = new Bank();
-
+        public Bank Bank;
         public BankForm()
         {
+            Bank = new Bank();
             InitializeComponent();
 
             TextBox_BIK.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);

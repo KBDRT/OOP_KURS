@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP_KURS"
         mc:Ignorable="d"
-        Title="DocumentForm" Height="804.196" Width="1017.814" WindowStartupLocation="CenterScreen">
+        Title="DocumentForm" Height="804.196" Width="1025.814" WindowStartupLocation="CenterScreen">
     <Grid>
         <ComboBox x:Name="ComboBox_DocType" HorizontalAlignment="Left" Margin="131,23,0,0" VerticalAlignment="Top" Width="222" RenderTransformOrigin="0.5,0.5">
             <ComboBox.RenderTransform>
@@ -32,6 +32,8 @@
         <Button Content="+" HorizontalAlignment="Left" Margin="36,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="-" HorizontalAlignment="Left" Margin="116,156,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.507,-0.55"/>
         <Button Content="Добавить" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="906,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Excel" HorizontalAlignment="Left" Margin="826,156,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

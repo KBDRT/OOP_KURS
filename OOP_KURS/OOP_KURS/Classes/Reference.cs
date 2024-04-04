@@ -48,4 +48,6 @@ namespace OOP_KURS
     internal class CustomerReference : Reference<Customer> { }
     internal class TypeReference : Reference<TypeDocument> { }
     internal class BankReference : Reference<Bank> { }
+    internal class UnitReference : Reference<Unit> { }
+    internal class ProductAndServiceReference : Reference<ProductAndService> { }
 }

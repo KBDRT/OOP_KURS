@@ -168,11 +168,14 @@ namespace OOP_KURS
         {
             Type type = Type.GetType("OOP_KURS." + ClassName);
 
+            if (type == null)
+                return;
+
             FieldCatalogClass CurrentFieldCatalog = GetFieldCatalog(ClassName);
 
             bool UsingDisplayIndex = Convert.ToBoolean(GetAttrValueForSect(ClassName, "UseDisplayIndex")) ?? false;
 
-            foreach (PropertyInfo property in type.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
+            foreach (PropertyInfo property in type?.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
             {
                 string FieldName = property.Name;
                 string FieldText = GetFieldTextByFC(ref FieldName, CurrentFieldCatalog, out FieldCatalogElem Element);
@@ -203,10 +206,14 @@ namespace OOP_KURS
         public static void SetPropertiesForWindow(Window Window, string ClassName)
         {
             FieldCatalogClass FC = GetFieldCatalog(ClassName);
+
+            if (FC == null)
+                return;
+
             Type myType = typeof(Window);
             foreach (FieldCatalogAttr prop in FC?.Properties)
             {
-                PropertyInfo Info = myType.GetProperty(prop.Name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
+                PropertyInfo Info = myType?.GetProperty(prop.Name, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
                 try
                 {
                     Info?.SetValue(Window, Convert.ToDouble(prop.Value));

@@ -32,7 +32,8 @@ namespace OOP_KURS
             if (ComboBox_DocType.Items.Count > 0)
                 ComboBox_DocType.SelectedIndex = 0;
 
-
+            ComboBox_Customer.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
+            ComboBox_Customer.DisplayMemberPath = "Name";
 
             FieldCatalog.SetColumnsForDataGrid(DataGrid_Pos, "Position");
 

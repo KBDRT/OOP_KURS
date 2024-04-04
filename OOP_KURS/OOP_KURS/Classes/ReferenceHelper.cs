@@ -16,9 +16,11 @@ namespace OOP_KURS
     {
         private static readonly Dictionary<Type, object> Components = new Dictionary<Type, object>
         {
-            { typeof(Customer),     new CustomerReference() },
-            { typeof(TypeDocument), new TypeReference() },
-            { typeof(Bank),         new BankReference() },
+            { typeof(Customer),          new CustomerReference() },
+            { typeof(TypeDocument),      new TypeReference() },
+            { typeof(Bank),              new BankReference() },
+            { typeof(Unit),              new UnitReference() },
+            { typeof(ProductAndService), new ProductAndServiceReference() },
         };
 
         private static readonly Dictionary<string, Type> AltComponentsName = new Dictionary<string, Type> { };

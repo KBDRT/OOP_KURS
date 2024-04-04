@@ -42,10 +42,22 @@
 	<Section name="Position" UseDisplayIndex ="True">
 		<Number WidthStar="1" DisplayIndex ="1" ReadOnly="X"> № п.п</Number>
 		<FullName WidthStar="4" DisplayIndex ="2"> Название </FullName>
-		<Amount WidthStar="2" DisplayIndex ="3" StringFormat ="{0:C}"> Цена за 1</Amount>
-		<Quantity WidthStar="2" DisplayIndex ="4"> Кол-во</Quantity>
-		<TotalAmount WidthStar="2" DisplayIndex ="5" ReadOnly="X" StringFormat ="{0:C}"> Общая сумма</TotalAmount>
+		<UnitOfMeasurement WidthStar="1,5" DisplayIndex ="3">Ед. измерения</UnitOfMeasurement>
+		<Amount WidthStar="2" DisplayIndex ="4" StringFormat ="{0:C}"> Цена за 1</Amount>
+		<Quantity WidthStar="2" DisplayIndex ="5"> Кол-во</Quantity>
+		<TotalAmount WidthStar="2" DisplayIndex ="6" ReadOnly="X" StringFormat ="{0:C}"> Общая сумма</TotalAmount>
 	</Section>
 
+	<Section name="Unit">
+		<FullName>Полное наименование</FullName>
+		<ShortName>Кратное название</ShortName>
+		<OKEI_CODE>Код по ОКЕИ</OKEI_CODE>
+	</Section>
+
+	<Section name="ProductAndService">
+		<FullName>Наименование</FullName>
+		<Type>Тип</Type>
+		<UnitOfMeasurement>Единица измерения</UnitOfMeasurement>
+	</Section>
 
 </FieldCatalog>

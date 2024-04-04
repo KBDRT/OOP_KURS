@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Data;
+using System.Collections;
 
 
 namespace OOP_KURS
@@ -33,12 +34,13 @@ namespace OOP_KURS
 
             InitializeComponent();
 
+
             RefName = ReferenceName;
 
             if (Mode != "Sel")
                 LastRow.Height = new GridLength(0);
 
-            
+            BankForm = new BankForm();
 
             FieldCatalog.SetColumnsForDataGrid(DataGrid, RefName);
 
@@ -54,14 +56,17 @@ namespace OOP_KURS
             {
                 case "Customer":
                     CustomerView = new CustomerForm();
-                    CustomerView.Show();
+                    CustomerView.ShowDialog();
                     break;
-                case "Address":
-                    //AddressForm AddressForm = new AddressForm();
-                    //AddressForm.Show();
+                case "Unit":
+                    DynamicForm View = new DynamicForm("Unit");
+                    View.Show();
+                    break;
+                case "ProductAndService":
+                    DynamicForm View_2 = new DynamicForm("ProductAndService");
+                    View_2.Show();
                     break;
                 case "Bank":
-                    BankForm = new BankForm();
                     BankForm.Show();
                     break;
             }
@@ -90,8 +95,6 @@ namespace OOP_KURS
                     BankForm.Bank.Name = Item.Name;
                     BankForm.Bank.BIK = Item.BIK;
                     BankForm.Bank.GetView();
-
-                    //ferenceHelper.SetCurrentBank(Item.Name, Item.BIK);
                 }
             }
 
