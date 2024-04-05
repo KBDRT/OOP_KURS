@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace OOP_KURS
 {
     // Справочники
-    internal abstract class Reference<T>
+    internal abstract class Reference<T> 
     {
         private readonly ObservableCollection<T> Elements = new ObservableCollection<T>();
 

@@ -191,11 +191,13 @@ namespace OOP_KURS
                     IsReadOnly = CheckReadOnlyField(Element),
                 };
 
+
+
                 textColumn.Binding.StringFormat = GetAttrValueForElem("StringFormat", Element); // Формат строки
 
                 if (UsingDisplayIndex)
                 {
-                    textColumn.DisplayIndex = Convert.ToInt32(GetAttrValueForElem("DisplayIndex", Element)) -1; // Порядок столбца
+                    textColumn.DisplayIndex = Convert.ToInt32(GetAttrValueForElem("DisplayIndex", Element)) - 1; // Порядок столбца
                 }
 
                 Grid.Columns.Add(textColumn);

@@ -9,9 +9,6 @@
         Title="MainWindow" Height="714.251" Width="1028.87" WindowStartupLocation="CenterScreen">
     <Grid>
 
-        <control:FilterDataGrid ShowStatusBar="False" ShowElapsedTime="False" 
-                                DateFormatString="d"  FilterLanguage="Russian" Margin="10,114,33,133" ></control:FilterDataGrid>
-
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Документ">
                 <MenuItem Header="Просмотр"></MenuItem>
@@ -29,6 +26,27 @@
 
             </MenuItem>
         </Menu>
-        <Label Content="Создано документов:" HorizontalAlignment="Left" Margin="54,53,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="Doc" Content="Создано документов:" HorizontalAlignment="Left" Margin="54,53,0,0" VerticalAlignment="Top"/>
+
+
+        <!--<Popup  x:Name="popup1" IsOpen="True" Placement="Mouse" >
+            <ListBox x:Name="ListBox">
+                
+            </ListBox>
+        </Popup>-->
+
+
+        <DataGrid x:Name="DG"  HorizontalAlignment="Left" Height="295" Margin="45,146,0,0" VerticalAlignment="Top" Width="753">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox IsEditable="True"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
     </Grid>
 </Window>

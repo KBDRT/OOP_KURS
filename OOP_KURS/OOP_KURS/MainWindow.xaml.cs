@@ -23,6 +23,16 @@ namespace OOP_KURS
         public MainWindow()
         {
             InitializeComponent();
+
+            //ListBox.Items.Add("test");
+
+
+            //popup1.PlacementTarget = Doc;
+
+
+            var test = "test";
+
+            DG.Items.Add(test);
         }
 
         private void Open_Reference_Form(object sender, RoutedEventArgs e)
@@ -38,5 +48,6 @@ namespace OOP_KURS
             DocumentForm View = new DocumentForm();
             View.Show();
         }
+
     }
 }

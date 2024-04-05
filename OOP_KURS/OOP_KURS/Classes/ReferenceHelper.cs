@@ -45,7 +45,7 @@ namespace OOP_KURS
             return InvokeMethod(RefName, "GetElements");
         }
 
-        private static dynamic InvokeMethod(string RefName, string MethodName)
+        public static dynamic InvokeMethod(string RefName, string MethodName)
         {
             try
             {

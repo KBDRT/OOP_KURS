@@ -27,11 +27,17 @@
         <ComboBox HorizontalAlignment="Left" Margin="732,68,0,0" VerticalAlignment="Top" Width="153"/>
         <Label Content="Исполнитель:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,64,0,0"/>
 
-        <DataGrid Language="ru-RU" CanUserAddRows="False" RowHeaderWidth="30"  AutoGenerateColumns="False" x:Name="DataGrid_Pos"  HorizontalAlignment="Left" Height="522" Margin="36,197,0,0" VerticalAlignment="Top" Width="945"/>
-        
+        <Popup Width="200"  x:Name="popup1"  Placement="Left" IsOpen="False"   >
+            <ListBox MaxHeight="60" x:Name="ListBox"  >
+
+            </ListBox>
+        </Popup>
+
+        <DataGrid Language="ru-RU" CanUserAddRows="False" RowHeaderWidth="30"  AutoGenerateColumns="False" x:Name="DataGrid_Pos"  HorizontalAlignment="Left" Height="522" Margin="36,197,0,0" VerticalAlignment="Top" Width="945"  PreviewKeyDown="DataGrid_Pos_PreviewKeyDown" BeginningEdit="DataGrid_Pos_BeginningEdit"/>
+
         <Button Content="+" HorizontalAlignment="Left" Margin="36,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="-" HorizontalAlignment="Left" Margin="116,156,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.507,-0.55"/>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="906,156,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Content="Excel" HorizontalAlignment="Left" Margin="826,156,0,0" VerticalAlignment="Top" Width="75"/>
 
