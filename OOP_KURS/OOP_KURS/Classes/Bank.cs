@@ -9,7 +9,7 @@ namespace OOP_KURS
     // Банк
     public class Bank : CloneSimple
     {
-        public int ID;
+        public ushort ID;
 
         private string _Name;
         private int? _BIK;

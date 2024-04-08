@@ -21,6 +21,7 @@ namespace OOP_KURS
             { typeof(Bank),              new BankReference() },
             { typeof(Unit),              new UnitReference() },
             { typeof(ProductAndService), new ProductAndServiceReference() },
+            { typeof(Document),          new DocumentReference() },
         };
 
         private static readonly Dictionary<string, Type> AltComponentsName = new Dictionary<string, Type> { };

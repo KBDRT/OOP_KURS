@@ -18,7 +18,7 @@ namespace OOP_KURS
         private string _PaymentAccount;
         private string _CorrespondentAccount;
 
-        public int ID;
+        public ushort ID;
         public string Name { get => _Name; set => SetValueField(ref _Name, value);}
         public string Form { get => _Form; set => SetValueField(ref _Form, value); }
         public Address LegalAddress { get; set; }

@@ -60,4 +60,12 @@
 		<UnitOfMeasurement>Единица измерения</UnitOfMeasurement>
 	</Section>
 
+	<Section name="Document">
+		<Number>Номер</Number>
+		<Type>Тип</Type>
+		<DocDate>Дата документа</DocDate>
+		<CreatedDate>Дата создания</CreatedDate>
+		<Client>Заказчик</Client>
+	</Section>
+
 </FieldCatalog>

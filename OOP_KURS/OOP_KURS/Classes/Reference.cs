@@ -19,7 +19,7 @@ namespace OOP_KURS
         public void AddToList(T elem)
         {
             if (ID_MethodInfo != null)
-                ID_MethodInfo.SetValue(elem, Elements.Count + 1);
+                ID_MethodInfo.SetValue(elem, Convert.ToUInt16(Elements.Count + 1));
 
             Elements.Add(elem);
         }
@@ -50,4 +50,5 @@ namespace OOP_KURS
     internal class BankReference : Reference<Bank> { }
     internal class UnitReference : Reference<Unit> { }
     internal class ProductAndServiceReference : Reference<ProductAndService> { }
+    internal class DocumentReference : Reference<Document> { }
 }

@@ -66,7 +66,7 @@ namespace OOP_KURS
             {
                 ReferenceHelper.Add(new Unit { FullName = FormWorker.Value_1,
                                                ShortName = FormWorker.Value_2,
-                                               OKEI_CODE = Convert.ToByte(FormWorker.Value_3),
+                                               OKEI_CODE = Convert.ToUInt16(FormWorker.Value_3),
                                                AdditionalInfo = FormWorker.Value_4});
             }
             else

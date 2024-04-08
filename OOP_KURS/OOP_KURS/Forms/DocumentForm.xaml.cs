@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -21,13 +22,16 @@ namespace OOP_KURS
     public partial class DocumentForm : Window
     {
 
-        Document DocTemp = new Document();
+        private Document DocTemp = new Document();
+        private int? PrevPopupIndx = null;
 
         public DocumentForm()
         {
             InitializeComponent();
 
-            popup1.StaysOpen = true;
+            DatePicker.SelectedDate = DateTime.Now;
+
+            PopupSuggest.StaysOpen = true;
           
             ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
             ComboBox_DocType.DisplayMemberPath = "Name";
@@ -42,13 +46,20 @@ namespace OOP_KURS
 
             DataGrid_Pos.ItemsSource = DocTemp.Positions;
 
-            //popup1.PlacementTarget = 
+            ObservableCollection<ProductAndService> Elements;
 
-            //var chel = DataGrid_Pos.Columns[0].Name;
+            Elements = ReferenceHelper.GetElementsByRefName("ProductAndService");
 
-
-            //ComboBox_Customer.ItemsSource = Worker.Customers;
-            //ComboBox_Customer.DisplayMemberPath = "Name";
+            if (Elements.Count > 0)
+            {
+                ListBox.ItemsSource = Elements;
+                ListBox.DisplayMemberPath = "FullName";
+            }
+            else
+            {
+                ListBox.Items.Add("Test222");
+                ListBox.Items.Add("Test111");
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -56,93 +67,136 @@ namespace OOP_KURS
             DocTemp.Positions.Add(new Position{Number = DocTemp.Positions.Count + 1 });
         }
 
-        private void DataGrid_Pos_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //ListBox.Items.Add(new Label { Content = ""});
-
-            //if (e.Key == Key.Enter)
-            //{
-
-            //ListBox.ItemsSource = null;
-
-          
-
-            var cell = e.OriginalSource as TextBox;
-            if (cell != null)
-            {
-                string dataitem = cell.Text;  //Here you can you AS keyword to convert the DataContext to your item type.
-                                              //dataitem.FirstName
-
-                
-
-                if (!String.IsNullOrEmpty(dataitem))
-                {
-                    ListBox.Items.Filter = f =>
-                    {
-                        string _text = (f as TypeDocument).Name;
-                        return _text.StartsWith(dataitem, StringComparison.CurrentCultureIgnoreCase) || _text.IndexOf(dataitem, StringComparison.OrdinalIgnoreCase) >= 0;
-                    };
-                }
-
-                //ListBox.DisplayMemberPath = "Name";
-
-                //ListBox.Items.Add(new Label { Content = dataitem });
-            }
-            //..}
-
-
+            if (ListBox.SelectedIndex != -1)
+                PopupSuggest.IsOpen = false;
         }
 
-        private void DataGrid_Pos_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        private void DataGrid_Pos_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            // popup1.PlacementTarget = sender AS;
-
-            //ListBox.Items.Clear();
-
-        
-
-
-
-            var chel = (e.EditingEventArgs.Source as TextBlock);
-
-            if (chel == null)
-                return;
-
-
-            ListBox.ItemsSource = null;
-            ListBox.Items.Clear();
-            popup1.IsOpen = false;
-
-
-            ObservableCollection<TypeDocument> Elements;
-
-            Elements = ReferenceHelper.GetElementsByRefName("TypeDocument");
-
-            // Copy the list to the array.
-
-
-            ListBox.ItemsSource = Elements;
-            ListBox.DisplayMemberPath = "Name";
-
-            ListBox.Items.Filter = f =>
-            {
-                string _text = (f as TypeDocument).Name;
-                return true;
-            };
-
-            var chel2 = e.Column;
-
-            popup1.Width = chel2.ActualWidth;
-            popup1.PlacementTarget = chel;
-            popup1.IsOpen = true;
-
+            PopupSuggest.IsOpen = false;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ObservableCollection<TypeDocument> Elements;
+            ReferenceHelper.Add(new Document { Positions = DocTemp.Positions, 
+                                               Client = (Customer)(ComboBox_Customer.SelectedItem as Customer)?.Clone() });
+        }
 
-            Elements = ReferenceHelper.GetElementsByRefName("TypeDocument");
+        private void DataGrid_Pos_KeyUp(object sender, KeyEventArgs e)
+        {
+            DataGrid Grid = sender as DataGrid;
+
+            int RowIndex = Grid.Items.IndexOf(Grid.CurrentItem);
+
+            if (Grid.CurrentCell.Column.SortMemberPath != "FullName")
+                return;
+
+            if (PrevPopupIndx != RowIndex || (PrevPopupIndx == RowIndex && !PopupSuggest.IsOpen))
+            {
+                PopupSuggest.IsOpen = false;
+                DataGridCell CurrentCell = DataGrid_Pos.GetCell(RowIndex, 1);
+                PopupSuggest.Width = CurrentCell.ActualWidth;
+                PopupSuggest.PlacementTarget = CurrentCell;
+                PopupSuggest.IsOpen = true;
+                PrevPopupIndx = RowIndex;
+                ListBox.DataContext = DocTemp.Positions[RowIndex];
+            }
+
+            TextBox Cell = e.OriginalSource as TextBox;
+            if (Cell != null)
+            {
+                string CellText = Cell.Text;
+                if (!string.IsNullOrEmpty(CellText) && CellText != " ")
+                {
+                    ListBox.Items.Filter = f =>
+                    {
+                        string _text = f as string;
+                        return _text.StartsWith(CellText, StringComparison.CurrentCultureIgnoreCase) || _text.IndexOf(CellText, StringComparison.OrdinalIgnoreCase) >= 0;
+                    };
+                }
+                else
+                {
+                    ListBox.Items.Filter = f =>
+                    {
+                        return true;
+                    };
+                }
+            }
         }
     }
+
+    public static class DataGridExtensions
+    {
+        /// <summary>
+        /// Returns a DataGridCell for the given row and column
+        /// </summary>
+        /// <param name="grid">The DataGrid</param>
+        /// <param name="row">The zero-based row index</param>
+        /// <param name="column">The zero-based column index</param>
+        /// <returns>The requested DataGridCell, or null if the indices are out of range</returns>
+        public static DataGridCell GetCell(this DataGrid grid, Int32 row, Int32 column)
+        {
+            DataGridRow gridrow = grid.GetRow(row);
+            if (gridrow != null)
+            {
+                DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(gridrow);
+
+                // try to get the cell but it may possibly be virtualized
+                DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(4); // ???
+                if (cell == null)
+                {
+                    // now try to bring into view and retreive the cell
+                    grid.ScrollIntoView(gridrow, grid.Columns[column]);
+
+                    cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(column);
+                }
+
+                return (cell);
+            }
+
+            return (null);
+        }
+
+        /// <summary>
+        /// Gets the DataGridRow based on the given index
+        /// </summary>
+        /// <param name="idx">The zero-based index of the container to get</param>
+        public static DataGridRow GetRow(this DataGrid dataGrid, Int32 idx)
+        {
+            DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(idx);
+            if (row == null)
+            {
+                // may be virtualized, bring into view and try again
+                dataGrid.ScrollIntoView(dataGrid.Items[idx]);
+                dataGrid.UpdateLayout();
+
+                row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(idx);
+            }
+
+            return (row);
+        }
+
+        private static T GetVisualChild<T>(Visual parent) where T : Visual
+        {
+            T child = default(T);
+
+            Int32 numvisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (Int32 i = 0; i < numvisuals; ++i)
+            {
+                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+                child = v as T;
+                if (child == null)
+                    child = GetVisualChild<T>(v);
+                else
+                    break;
+            }
+
+            return child;
+        }
+    }
+
+
+
 }

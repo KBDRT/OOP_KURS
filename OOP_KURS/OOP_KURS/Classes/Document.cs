@@ -10,12 +10,16 @@ namespace OOP_KURS
     // Документ
     class Document : CloneSimple
     {
-        public int ID;
-        public uint Number { set; get; }
+        public ushort ID;
+        public ushort Number { set; get; }
         public TypeDocument Type { set; get; }
 
-        public DateTime dateTime = DateTime.Now;
+        public DateTime DocDate { set; get; }  = DateTime.Now;
 
-        public ObservableCollection<Position> Positions = new ObservableCollection<Position>();
+        public DateTime CreatedDate { set; get; }  = DateTime.Now;
+
+        public Customer Client { set; get; }  = new Customer();
+
+        public ObservableCollection<Position> Positions { set; get; }  = new ObservableCollection<Position>();
     }
 }

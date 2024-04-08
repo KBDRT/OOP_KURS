@@ -9,7 +9,7 @@ namespace OOP_KURS
     // Типы документов
     public class TypeDocument
     {
-        public int ID;
+        public ushort ID;
         public string Name { set; get; }
         public string Info { set; get; }
     }

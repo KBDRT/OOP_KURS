@@ -191,8 +191,6 @@ namespace OOP_KURS
                     IsReadOnly = CheckReadOnlyField(Element),
                 };
 
-
-
                 textColumn.Binding.StringFormat = GetAttrValueForElem("StringFormat", Element); // Формат строки
 
                 if (UsingDisplayIndex)

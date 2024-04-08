@@ -9,10 +9,10 @@ namespace OOP_KURS
     // Единица измерения
     class Unit : CloneSimple
     {
-        public int ID;
+        public ushort ID;
         public string FullName { get; set; }
         public string ShortName { get; set; }
-        public byte OKEI_CODE { get; set; }
+        public ushort OKEI_CODE { get; set; }
         public string AdditionalInfo { get; set; }
     }
 }

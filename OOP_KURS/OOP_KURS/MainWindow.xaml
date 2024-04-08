@@ -27,26 +27,17 @@
             </MenuItem>
         </Menu>
         <Label x:Name="Doc" Content="Создано документов:" HorizontalAlignment="Left" Margin="54,53,0,0" VerticalAlignment="Top"/>
+        <DataGrid x:Name="DG" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="515" Margin="28,112,0,0" VerticalAlignment="Top" Width="968"/>
 
 
-        <!--<Popup  x:Name="popup1" IsOpen="True" Placement="Mouse" >
+        <!--<Popup  x:Name="PopupSuggest" IsOpen="True" Placement="Mouse" >
             <ListBox x:Name="ListBox">
                 
             </ListBox>
         </Popup>-->
 
 
-        <DataGrid x:Name="DG"  HorizontalAlignment="Left" Height="295" Margin="45,146,0,0" VerticalAlignment="Top" Width="753">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn>
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox IsEditable="True"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+      
         
     </Grid>
 </Window>

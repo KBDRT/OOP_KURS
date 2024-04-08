@@ -27,12 +27,12 @@ namespace OOP_KURS
             //ListBox.Items.Add("test");
 
 
-            //popup1.PlacementTarget = Doc;
+            //PopupSuggest.PlacementTarget = Doc;
+
+            DG.ItemsSource = ReferenceHelper.GetElementsByRefName("Document");
+            FieldCatalog.SetColumnsForDataGrid(DG, "Document");
 
 
-            var test = "test";
-
-            DG.Items.Add(test);
         }
 
         private void Open_Reference_Form(object sender, RoutedEventArgs e)
