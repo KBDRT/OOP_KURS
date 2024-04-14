@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OOP_KURS
 {
     // Типы документов
-    public class TypeDocument
+    public class TypeDocument : CloneSimple
     {
         public ushort ID;
         public string Name { set; get; }

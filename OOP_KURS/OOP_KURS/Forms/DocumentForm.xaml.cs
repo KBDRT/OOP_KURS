@@ -32,13 +32,7 @@ namespace OOP_KURS
             DatePicker.SelectedDate = DateTime.Now;
 
             PopupSuggest.StaysOpen = true;
-          
-            ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
-            ComboBox_DocType.DisplayMemberPath = "Name";
-
-            if (ComboBox_DocType.Items.Count > 0)
-                ComboBox_DocType.SelectedIndex = 0;
-
+            
             ComboBox_Customer.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
             ComboBox_Customer.DisplayMemberPath = "Name";
 
@@ -60,6 +54,16 @@ namespace OOP_KURS
                 ListBox.Items.Add("Test222");
                 ListBox.Items.Add("Test111");
             }
+
+            DataContext = DocTemp;
+
+            ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
+            ComboBox_DocType.DisplayMemberPath = "Name";
+
+            if (ComboBox_DocType.Items.Count > 0)
+                DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -80,8 +84,7 @@ namespace OOP_KURS
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ReferenceHelper.Add(new Document { Positions = DocTemp.Positions, 
-                                               Client = (Customer)(ComboBox_Customer.SelectedItem as Customer)?.Clone() });
+            ReferenceHelper.AddCopy(DocTemp);
         }
 
         private void DataGrid_Pos_KeyUp(object sender, KeyEventArgs e)

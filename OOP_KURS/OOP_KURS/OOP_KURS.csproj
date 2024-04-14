@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoFilterDataGrid, Version=1.0.21221.1631, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFilterDataGrid.1.0.21221.1631\lib\net472\AutoFilterDataGrid.dll</HintPath>
+    </Reference>
     <Reference Include="FilterDataGrid, Version=1.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\FilterDataGrid.1.2.2\lib\net46\FilterDataGrid.dll</HintPath>
     </Reference>

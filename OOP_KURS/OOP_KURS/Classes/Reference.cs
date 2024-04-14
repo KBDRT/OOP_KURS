@@ -18,15 +18,18 @@ namespace OOP_KURS
 
         public void AddToList(T elem)
         {
-            if (ID_MethodInfo != null)
-                ID_MethodInfo.SetValue(elem, Convert.ToUInt16(Elements.Count + 1));
-
+            ID_MethodInfo?.SetValue(elem, Convert.ToUInt16(Elements.Count + 1));
             Elements.Add(elem);
         }
 
         public void DeleteFromList(T elem)
         {
             Elements.Remove(elem);
+        }
+
+        public void ClearList()
+        {
+            Elements.Clear();
         }
 
         public Reference()

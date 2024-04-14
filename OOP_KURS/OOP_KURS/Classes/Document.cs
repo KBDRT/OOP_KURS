@@ -14,7 +14,7 @@ namespace OOP_KURS
         public ushort Number { set; get; }
         public TypeDocument Type { set; get; }
 
-        public DateTime DocDate { set; get; }  = DateTime.Now;
+        public DateTime? DocDate { set; get; }  = DateTime.Now;
 
         public DateTime CreatedDate { set; get; }  = DateTime.Now;
 

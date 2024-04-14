@@ -30,6 +30,33 @@ namespace OOP_KURS
 
         public static void Delete(dynamic Elem) => InvokeMethodByElem(Elem, "DeleteFromList");
 
+        public static void AddCopy(dynamic Elem)
+        {
+            Type ElemType = Elem.GetType();
+
+            object ElemCopy = Elem.Clone();
+
+            foreach (PropertyInfo fi in ElemType.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.ToArray())
+            {
+                if (!fi.CanWrite)
+                    continue;
+
+                if (!fi.PropertyType.FullName.ToString().StartsWith("System."))
+                {
+                    Type ElemType2 = fi.PropertyType; // Тип глубокого поля
+
+                    dynamic value = fi?.GetValue(Elem); // Получить значение из копируемого
+
+                    object ElemCopyDeep = value?.Clone(); // Клонировать
+
+                    fi.SetValue(ElemCopy, ElemCopyDeep); // Присвоить в новый объект
+
+                }
+            }
+            Add(ElemCopy);
+        }
+
+
         private static void InvokeMethodByElem(dynamic Elem, string MethodName)
         {
             try
