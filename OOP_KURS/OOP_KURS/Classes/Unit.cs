@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace OOP_KURS
 {
     // Единица измерения
-    class Unit : CloneSimple
+    public class Unit : CloneSimple
     {
-        public ushort ID;
+        public ushort ID { get; set; }
         public string FullName { get; set; }
         public string ShortName { get; set; }
         public ushort OKEI_CODE { get; set; }

@@ -86,6 +86,19 @@ namespace OOP_KURS
             }
         }
 
+        public static void InvokeMethod(string RefName, string MethodName, dynamic Params)
+        {
+            try
+            {
+                MethodInfo Method = Components[AltComponentsName[RefName]].GetType().GetMethod(MethodName);
+                Method?.Invoke(Components[AltComponentsName[RefName]], new object[] { Params });
+            }
+            catch
+            {
+
+            }
+        }
+
         static ReferenceHelper()
         {
             FillAltNameDict();
@@ -102,9 +115,9 @@ namespace OOP_KURS
 
         private static void InitTypeDocs()
         {
-            Add(new TypeDocument { Name = "СЧЕТ" });
-            Add(new TypeDocument { Name = "АКТ ВЫПОЛНЕННЫХ РАБОТ" });
-            Add(new TypeDocument { Name = "ТОВАРНАЯ НАКЛАДНАЯ" });
+            Add(new TypeDocument { Name = "Счет" });
+            Add(new TypeDocument { Name = "Акт выполненных работ" });
+            Add(new TypeDocument { Name = "Товарная накладная" });
         }
 
     }

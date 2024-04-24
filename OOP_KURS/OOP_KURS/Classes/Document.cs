@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace OOP_KURS
 {
     // Документ
-    class Document : CloneSimple
+    public class Document : CloneSimple
     {
-        public ushort ID;
+        public ushort ID { get; set; }
         public ushort Number { set; get; }
         public TypeDocument Type { set; get; }
 

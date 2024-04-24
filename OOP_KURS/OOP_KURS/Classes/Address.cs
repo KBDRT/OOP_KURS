@@ -20,7 +20,7 @@ namespace OOP_KURS
         private string  _Complex;
         private string  _Info;
 
-        public ushort ID;
+        public ushort ID { get; set; }
         public int? PostalCode { get => _PostalCode; set => SetValueField(ref _PostalCode, value); }
         public string Country { get => _Country; set => SetValueField(ref _Country, value); } 
         public string Region { get => _Region; set => SetValueField(ref _Region, value); }

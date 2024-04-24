@@ -14,7 +14,7 @@ namespace OOP_KURS
         private string _Patronymic;
         private string _Position;
 
-        public ushort ID;
+        public ushort ID { get; set; }
         public string LastName { get => _LastName; set => SetValueField(ref _LastName, value); }
         public string FirstName { get => _FirstName; set => SetValueField(ref _FirstName, value); }
         public string Patronymic { get => _Patronymic; set => SetValueField(ref _Patronymic, value); }

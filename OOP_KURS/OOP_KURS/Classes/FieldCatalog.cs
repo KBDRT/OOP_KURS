@@ -174,6 +174,7 @@ namespace OOP_KURS
             FieldCatalogClass CurrentFieldCatalog = GetFieldCatalog(ClassName);
 
             bool UsingDisplayIndex = Convert.ToBoolean(GetAttrValueForSect(ClassName, "UseDisplayIndex")) ?? false;
+            string UsingReadOnly = GetAttrValueForSect(ClassName, "ReadOnly");
 
             foreach (PropertyInfo property in type?.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static))
             {
@@ -188,8 +189,11 @@ namespace OOP_KURS
                     Header = FieldText,
                     Binding = new Binding(FieldName),
                     Width = GetWidth(Element),//DataGridLength.Auto,
-                    IsReadOnly = CheckReadOnlyField(Element),
+                    //IsReadOnly = CheckReadOnlyField(Element),
                 };
+
+
+                textColumn.IsReadOnly = UsingReadOnly == "X" ? true : CheckReadOnlyField(Element);
 
                 textColumn.Binding.StringFormat = GetAttrValueForElem("StringFormat", Element); // Формат строки
 

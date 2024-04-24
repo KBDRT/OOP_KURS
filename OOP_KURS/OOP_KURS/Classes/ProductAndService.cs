@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace OOP_KURS
 {
     // Товары и услуги
-    class ProductAndService : CloneSimple
+    public class ProductAndService : CloneSimple
     {
 
         private string _FullName;
@@ -19,13 +19,14 @@ namespace OOP_KURS
         public string Info { set; get; }
     }
 
-    class Position : ProductAndService
+    public class Position : ProductAndService
     {
+        private int _Number;
         private float _Quantity;
         private float _Amount;
         private float _TotalAmount;
 
-        public int Number { get; set; }
+        public int Number { get => _Number; set { SetValueField(ref _Number, value);} }
         public float Quantity { get => _Quantity; set { SetValueField(ref _Quantity, value); RecalcTotal(); } }
         public float Amount { get => _Amount; set { SetValueField(ref _Amount, value); RecalcTotal(); } }
         public float TotalAmount { get => _TotalAmount; set { SetValueField(ref _TotalAmount, value); } }

@@ -60,12 +60,13 @@
 		<UnitOfMeasurement>Единица измерения</UnitOfMeasurement>
 	</Section>
 
-	<Section name="Document">
-		<Number>Номер</Number>
-		<Type>Тип</Type>
-		<DocDate>Дата документа</DocDate>
-		<CreatedDate>Дата создания</CreatedDate>
-		<Client>Заказчик</Client>
+	<Section name="Document" ReadOnly="X" UseDisplayIndex ="True">
+		<ID DisplayIndex ="1">Номер по п.п</ID>
+		<Number DisplayIndex ="2">Номер технический</Number>
+		<Type BindingName ="Type.Name" DisplayIndex ="4">Тип документа</Type>
+		<DocDate DisplayIndex ="5" StringFormat ="{0:dd.MM.yyyy}">Дата документа</DocDate>
+		<CreatedDate DisplayIndex ="6" StringFormat ="{0:dd.MM.yyyy hh:mm}">Дата создания</CreatedDate>
+		<Client DisplayIndex ="3" BindingName="Client.ViewName">Заказчик</Client>
 	</Section>
 
 </FieldCatalog>

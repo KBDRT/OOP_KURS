@@ -25,22 +25,23 @@ namespace OOP_KURS
         private Document DocTemp = new Document();
         private int? PrevPopupIndx = null;
 
-        public DocumentForm()
+        private PositionReference DocPositions = new PositionReference();
+
+
+        public DocumentForm(string Mode = "Create", Document DocEdit = null)
         {
             InitializeComponent();
 
-            DatePicker.SelectedDate = DateTime.Now;
-
             PopupSuggest.StaysOpen = true;
-            
             ComboBox_Customer.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
             ComboBox_Customer.DisplayMemberPath = "Name";
 
             FieldCatalog.SetColumnsForDataGrid(DataGrid_Pos, "Position");
 
-            DataGrid_Pos.ItemsSource = DocTemp.Positions;
-
             ObservableCollection<ProductAndService> Elements;
+
+            ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
+            ComboBox_DocType.DisplayMemberPath = "Name";
 
             Elements = ReferenceHelper.GetElementsByRefName("ProductAndService");
 
@@ -57,18 +58,33 @@ namespace OOP_KURS
 
             DataContext = DocTemp;
 
-            ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
-            ComboBox_DocType.DisplayMemberPath = "Name";
 
-            if (ComboBox_DocType.Items.Count > 0)
-                DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
+            if (Mode == "Edit" && DocEdit != null)
+            {
+                DocTemp = DocEdit;
+                //foreach (var Elem in DocEdit.Positions)
+                //{
+                //    DocPositions.AddToList(Elem);
+                //}
+            }
 
+            else
+            {
+                DocTemp.Positions = DocPositions.GetElements();
+
+                DatePicker.SelectedDate = DateTime.Now;
+
+                //DataGrid_Pos.ItemsSource = DocPositions.GetElements();
+
+                if (ComboBox_DocType.Items.Count > 0)
+                    DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
+            }
 
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DocTemp.Positions.Add(new Position{Number = DocTemp.Positions.Count + 1 });
+            DocPositions.AddToList(new Position { });
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -125,6 +141,18 @@ namespace OOP_KURS
                     {
                         return true;
                     };
+                }
+            }
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (DataGrid_Pos.SelectedItems.Count > 0)
+            {
+                List<dynamic> SelectedItemsList = DataGrid_Pos.SelectedItems.OfType<dynamic>().ToList();
+                foreach (var Item in SelectedItemsList)
+                {
+                    DocPositions.DeleteFromList(Item);
                 }
             }
         }

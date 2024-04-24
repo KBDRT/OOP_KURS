@@ -18,8 +18,8 @@ namespace OOP_KURS
         private string _PaymentAccount;
         private string _CorrespondentAccount;
 
-        public ushort ID;
-        public string Name { get => _Name; set => SetValueField(ref _Name, value);}
+        public ushort ID { get; set; }
+        public string Name { get => _Name; set => SetValueField(ref _Name, value); }
         public string Form { get => _Form; set => SetValueField(ref _Form, value); }
         public Address LegalAddress { get; set; }
         public string Phone { get => _Phone; set => SetValueField(ref _Phone, value); }
@@ -30,5 +30,11 @@ namespace OOP_KURS
         public string CorrespondentAccount { get => _CorrespondentAccount; set => SetValueField(ref _CorrespondentAccount, value); }
         public Bank Bank { get; set; }
         public Person CompanyRepresentative { get; set; }
+
+        public string ViewName
+        {
+            get { return string.Format("{0} \"{1}\" ", Form, Name); }
+        }
+
     }
 }
