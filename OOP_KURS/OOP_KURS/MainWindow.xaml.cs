@@ -33,12 +33,12 @@ namespace OOP_KURS
 
             DG.ItemsSource = ReferenceHelper.GetElementsByRefName("Document");
 
-
+            ReferenceHelper.Add(new Customer { Name = "test" });
+            ReferenceHelper.Add(new Customer { Name = "test2" });
 
             //ReferenceHelper.InvokeMethod("Customer", "ClearList");
 
             // Test.RemoveAt(0);
-
 
             //var MyObservableCollection = ReferenceHelper.GetElementsByRefName("Customer");
 
@@ -49,8 +49,6 @@ namespace OOP_KURS
             //ReferenceHelper.Add(new Customer { Name = "A" });
 
             //FieldCatalog.SetColumnsForDataGrid(DG, "Document");
-
-
         }
 
         private void Open_Reference_Form(object sender, RoutedEventArgs e)
@@ -76,7 +74,7 @@ namespace OOP_KURS
                 {
                     DataGridRow Row = Grid.ItemContainerGenerator.ContainerFromItem(Grid.SelectedItem) as DataGridRow;
 
-                    DocumentForm Form = new DocumentForm("Edit", (Document)Row.Item);
+                    DocumentForm Form = new DocumentForm("Edit", (Document)Row.DataContext);
                     Form.ShowDialog();
 
                 }

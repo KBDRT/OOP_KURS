@@ -10,7 +10,7 @@
 
         <Menu Height="25" VerticalAlignment="Top">
             <MenuItem Header="Документ">
-                <MenuItem Header="Просмотр"></MenuItem>
+                <!--<MenuItem Header="Просмотр"></MenuItem>-->
                 <MenuItem Header="Создание" Click="MenuItem_Click_1"></MenuItem>
             </MenuItem>
             <MenuItem Header="Справочники">
@@ -28,7 +28,7 @@
         <Label x:Name="Doc" Content="Создано документов:" HorizontalAlignment="Left" Margin="28,42,0,0" VerticalAlignment="Top"/>
 
 
-        <DataGrid x:Name="DG" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="515" Margin="28,112,0,0" VerticalAlignment="Top" Width="968" MouseDoubleClick="DG_MouseDoubleClick">
+        <DataGrid x:Name="DG" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="515" Margin="28,73,0,0" VerticalAlignment="Top" Width="968" MouseDoubleClick="DG_MouseDoubleClick">
         </DataGrid>
 
 

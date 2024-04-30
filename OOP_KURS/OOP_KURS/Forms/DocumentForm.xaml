@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="DocumentForm" Height="804.196" Width="1025.814" WindowStartupLocation="CenterScreen">
     <Grid>
-        <ComboBox x:Name="ComboBox_DocType" HorizontalAlignment="Left" Margin="131,23,0,0" VerticalAlignment="Top" Width="222" RenderTransformOrigin="0.5,0.5" SelectedItem="{Binding Path=Type}">
+        <ComboBox  x:Name="ComboBox_DocType"  HorizontalAlignment="Left" Margin="131,23,0,0" VerticalAlignment="Top" Width="222" RenderTransformOrigin="0.5,0.5" SelectedItem="{Binding Path=Type}">
             
         </ComboBox>
         
@@ -17,7 +17,7 @@
         <TextBox Text="{Binding Path=Number}"  HorizontalAlignment="Left" Height="23" Margin="522,23,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="30"/>
         <DatePicker SelectedDate="{Binding Path=DocDate}" x:Name="DatePicker" HorizontalAlignment="Left" Margin="732,21,0,0" VerticalAlignment="Top" Width="153"/>
         <Label Content="Дата документа:" HorizontalAlignment="Left" Margin="615,19,0,0" VerticalAlignment="Top" Width="98"/>
-        <ComboBox SelectedItem="{Binding Path=Client}" x:Name="ComboBox_Customer" HorizontalAlignment="Left" Margin="132,64,0,0" VerticalAlignment="Top" Width="220"/>
+        <ComboBox  SelectedItem="{Binding Path=Client}"  x:Name="ComboBox_Customer" HorizontalAlignment="Left" Margin="132,64,0,0" VerticalAlignment="Top" Width="220"/>
         <Label Content="Заказчик:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="22,60,0,0"/>
         <ComboBox Visibility="Hidden" HorizontalAlignment="Left" Margin="732,68,0,0" VerticalAlignment="Top" Width="153"/>
         <Label Visibility="Hidden" Content="Исполнитель:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="615,64,0,0"/>
@@ -31,8 +31,8 @@
         <Button Content="+" HorizontalAlignment="Left" Margin="36,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <Button Content="-" HorizontalAlignment="Left" Margin="116,156,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.507,-0.55" Click="Button_Click_2"/>
         <Button IsEnabled="False" Content="Добавить" HorizontalAlignment="Left" Margin="196,156,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="906,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
-        <Button Content="Excel" HorizontalAlignment="Left" Margin="826,156,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Btn_Add" Content="Добавить" HorizontalAlignment="Left" Margin="906,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="Excel" HorizontalAlignment="Left" Margin="826,156,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
 
     </Grid>
 </Window>

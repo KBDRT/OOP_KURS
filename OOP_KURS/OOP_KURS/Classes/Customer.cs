@@ -17,9 +17,11 @@ namespace OOP_KURS
         private string _OGR_Number;
         private string _PaymentAccount;
         private string _CorrespondentAccount;
+        private string _ViewName;
+
 
         public ushort ID { get; set; }
-        public string Name { get => _Name; set => SetValueField(ref _Name, value); }
+        public string Name { get => _Name; set { SetValueField(ref _Name, value); ViewName = ""; } }
         public string Form { get => _Form; set => SetValueField(ref _Form, value); }
         public Address LegalAddress { get; set; }
         public string Phone { get => _Phone; set => SetValueField(ref _Phone, value); }
@@ -31,10 +33,6 @@ namespace OOP_KURS
         public Bank Bank { get; set; }
         public Person CompanyRepresentative { get; set; }
 
-        public string ViewName
-        {
-            get { return string.Format("{0} \"{1}\" ", Form, Name); }
-        }
-
+        public string ViewName { get => _ViewName; set { SetValueField(ref _ViewName, string.Format("{0} \"{1}\" ", Form, Name)); } }
     }
 }

@@ -24,13 +24,15 @@ namespace OOP_KURS
 
         private Document DocTemp = new Document();
         private int? PrevPopupIndx = null;
+        private string FormMode;
 
         private PositionReference DocPositions = new PositionReference();
-
 
         public DocumentForm(string Mode = "Create", Document DocEdit = null)
         {
             InitializeComponent();
+
+            FormMode = Mode;
 
             PopupSuggest.StaysOpen = true;
             ComboBox_Customer.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
@@ -56,30 +58,31 @@ namespace OOP_KURS
                 ListBox.Items.Add("Test111");
             }
 
-            DataContext = DocTemp;
-
-
+           
             if (Mode == "Edit" && DocEdit != null)
             {
                 DocTemp = DocEdit;
-                //foreach (var Elem in DocEdit.Positions)
-                //{
-                //    DocPositions.AddToList(Elem);
-                //}
+                Btn_Add.Visibility = Visibility.Hidden;
+
+                DocPositions.AddList(DocTemp.Positions);
+
             }
 
             else
             {
                 DocTemp.Positions = DocPositions.GetElements();
 
+                //ComboBox_Customer.SelectedIndex = -1;
+
                 DatePicker.SelectedDate = DateTime.Now;
 
                 //DataGrid_Pos.ItemsSource = DocPositions.GetElements();
 
-                if (ComboBox_DocType.Items.Count > 0)
-                    DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
+                //if (ComboBox_DocType.Items.Count > 0)
+                //    DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
             }
 
+            DataContext = DocTemp;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -100,7 +103,8 @@ namespace OOP_KURS
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            ReferenceHelper.AddCopy(DocTemp);
+            ReferenceHelper.Add(DocTemp);
+            DocTemp = new Document();
         }
 
         private void DataGrid_Pos_KeyUp(object sender, KeyEventArgs e)
@@ -155,6 +159,11 @@ namespace OOP_KURS
                     DocPositions.DeleteFromList(Item);
                 }
             }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            ExcelHelper.Start(DocTemp);
         }
     }
 

@@ -21,7 +21,13 @@ namespace OOP_KURS
 
         // Реализация изменения поля
         public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged(string prop = "")
+
+
+
+        public delegate void AccountHandler();
+        public event AccountHandler Notify;
+
+        public void OnPropertyChanged(string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
@@ -29,11 +35,12 @@ namespace OOP_KURS
 
         public void SetValueField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            if (!Equals(field, value))
-            {
+            //if (!Equals(field, value))
+            //{
                 field = value;
                 OnPropertyChanged(propertyName);
-            }
+                Notify?.Invoke();
+            //}
         }
     }
 

@@ -6,13 +6,14 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace OOP_KURS
 {
     // Справочники
-    internal abstract class Reference<T>
+    public abstract class Reference<T>
     {
-        private readonly ObservableCollection<T> Elements = new ObservableCollection<T>();
+        protected ObservableCollection<T> Elements = new ObservableCollection<T>();
 
         private readonly Type ElementsType = typeof(T);
         private readonly PropertyInfo ID_MethodInfo;
@@ -31,6 +32,11 @@ namespace OOP_KURS
         public void DeleteFromList(T elem)
         {
             Elements.Remove(elem);
+        }
+
+        public void AddList(ObservableCollection<T> Elems)
+        {
+            Elements = Elems;
         }
 
         public void ClearList()
@@ -56,7 +62,7 @@ namespace OOP_KURS
         private void ElementsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             int i = 0;
-            foreach (var Elem in Elements)
+            foreach (T Elem in Elements)
             {
                 i++;
                 ID_MethodInfo?.SetValue(Elem, Convert.ToUInt16(i));
@@ -87,11 +93,20 @@ namespace OOP_KURS
     internal class UnitReference : Reference<Unit> { }
     internal class ProductAndServiceReference : Reference<ProductAndService> { }
     internal class DocumentReference : Reference<Document> { }
-    internal class PositionReference : Reference<Position> 
+    public class PositionReference : Reference<Position> 
     {
+        private float TotalSum = 0;
+
         public PositionReference() : base("Number")
         {
-
+            foreach(Position Pos in Elements)
+            {
+                Pos.Notify += Test;
+            }
+        }
+        void Test()
+        {
+            TotalSum++;
         }
     }
 }
