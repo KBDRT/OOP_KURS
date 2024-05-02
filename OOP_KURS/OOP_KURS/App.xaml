@@ -1,7 +1,7 @@
-﻿<Application x:Class="OOP_KURS.App"
+﻿<Application x:Class="DocCreator.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:OOP_KURS"
+             xmlns:local="clr-namespace:DocCreator"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using ClosedXML.Excel;
+using System;
 
-
-namespace OOP_KURS
+namespace DocCreator
 {
     static class ExcelHelper
     {
@@ -23,16 +19,25 @@ namespace OOP_KURS
 
             // АКТ
             ws1.Cell(2,5).Value = Doc.Number;
-            ws1.Cell(2, 7).Value = Doc.CreatedDate;
+            ws1.Cell(2, 7).Value = string.Format("{0:dd.MM.yyyy}",Doc.CreatedDate);
 
-            if (Doc.Positions.Count > 1)
+
+            int PositionsCount = Doc.Positions.GetElemCount();
+
+            ObservableCollection<Position> Positions = Doc.Positions.GetElements();
+
+
+            string SumInWords = AmountConverter.Convert(Doc.Positions.TotalSum, out string Kop);
+
+
+            if (PositionsCount > 1)
             {
                 // Вставить строки
                 var StartRow = ws1.Row(10);
-                StartRow.InsertRowsBelow(Doc.Positions.Count - 1);
+                StartRow.InsertRowsBelow(PositionsCount - 1);
             }
 
-            for (int i = 0; i < Doc.Positions.Count; i++)
+            for (int i = 0; i < PositionsCount; i++)
             {
                 string chel = string.Format("B{0}:E{0}", 10 + i);
                 ws1.Range(chel).Merge();
@@ -42,16 +47,27 @@ namespace OOP_KURS
 
                 ws1.Cell(10 + i, 1).Value = i + 1;
 
-                ws1.Cell(10 + i, 2).Value = Doc.Positions[i].FullName;
+                ws1.Cell(10 + i, 2).Value = Positions[i].FullName;
 
-                ws1.Cell(10 + i, 6).Value = Doc.Positions[i].Quantity;
+                ws1.Cell(10 + i, 6).Value = Positions[i].Quantity;
 
                 //ws1.Cell(10 + i, 7).Value = Doc.Positions[i].UnitOfMeasurement.FullName;
 
-                ws1.Cell(10 + i, 8).Value = Doc.Positions[i].Amount;
+                ws1.Cell(10 + i, 8).Value = Math.Round(Positions[i].Amount, 2) ;
 
-                ws1.Cell(10 + i, 9).Value = Doc.Positions[i].TotalAmount;
+                ws1.Cell(10 + i, 9).Value = Math.Round(Positions[i].TotalAmount, 2);
             }
+
+            ws1.Cell(10 + PositionsCount, 9).Value = ws1.Cell(12 + PositionsCount, 9).Value = Doc.Positions.TotalSum;
+
+            ws1.Cell(14 + PositionsCount, 4).Value = (int)Doc.Positions.TotalSum;
+
+            ws1.Cell(14 + PositionsCount, 6).Value = Kop;
+
+
+            ws1.Cell(15 + PositionsCount, 3).Value = SumInWords;
+
+
 
             // StartRow.CopyTo(EndRow);
 

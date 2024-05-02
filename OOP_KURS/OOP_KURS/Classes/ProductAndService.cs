@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     // Товары и услуги
     public class ProductAndService : CloneSimple
@@ -27,13 +23,36 @@ namespace OOP_KURS
         private float _TotalAmount;
 
         public int Number { get => _Number; set => SetValueField(ref _Number, value); }
-        public float Quantity { get => _Quantity; set { SetValueField(ref _Quantity, value); RecalcTotal(); } }
-        public float Amount { get => _Amount; set { SetValueField(ref _Amount, value); RecalcTotal(); } }
+        public float Quantity
+        {
+            get => _Quantity;
+            set
+            {
+                float val = (float)Math.Round(value, 2);
+                SetValueField(ref _Quantity, val);
+                RecalcTotal();
+            }
+        }
+        public float Amount
+        { 
+            get => _Amount;
+            set
+            {
+                float val = (float)Math.Round(value, 2);
+                SetValueField(ref _Amount, val);
+                RecalcTotal();
+            }
+        }
         public float TotalAmount { get => _TotalAmount; set => SetValueField(ref _TotalAmount, value); }
+
+        public delegate void TotalAmountChanged(float OldSumm, float newSumm);
+        public event TotalAmountChanged RecalcSum;
 
         private void RecalcTotal()
         {
-            TotalAmount = Quantity * Amount;
+            float NewSum = (float)Math.Round(Quantity * Amount, 2);
+            RecalcSum?.Invoke(TotalAmount, NewSum);
+            TotalAmount = NewSum;
         }
 
     }

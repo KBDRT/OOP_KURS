@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-using System.Windows.Input;
 using System.Xml.Linq;
 using System.Reflection;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows;
-using System.Collections.ObjectModel;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     public class FieldCatalogClass
     {
@@ -166,7 +160,7 @@ namespace OOP_KURS
         // Добавить в Grid поля 
         static public void SetColumnsForDataGrid(DataGrid Grid, string ClassName)
         {
-            Type type = Type.GetType("OOP_KURS." + ClassName);
+            Type type = Type.GetType("DocCreator." + ClassName);
 
             if (type == null)
                 return;

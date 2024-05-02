@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.Specialized;
-using System.ComponentModel;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     // Справочники
-    public abstract class Reference<T>
+    public abstract class Reference<T> : CloneSimple
     {
         protected ObservableCollection<T> Elements = new ObservableCollection<T>();
 
@@ -44,6 +39,11 @@ namespace OOP_KURS
             Elements.Clear();
         }
 
+        public int GetElemCount()
+        {
+            return Elements.Count;
+        }
+
         public Reference(string PropertyName = "ID")
         {
             try
@@ -67,24 +67,24 @@ namespace OOP_KURS
                 i++;
                 ID_MethodInfo?.SetValue(Elem, Convert.ToUInt16(i));
             }
-            //switch (e.Action)
-            //{
-            //    case NotifyCollectionChangedAction.Add: // если добавление
-            //        if (e.NewItems?[0] is Person newPerson)
-            //            Console.WriteLine($"Добавлен новый объект: {newPerson.Name}");
-            //        break;
-            //    case NotifyCollectionChangedAction.Remove: // если удаление
-            //        if (e.OldItems?[0] is Person oldPerson)
-            //            Console.WriteLine($"Удален объект: {oldPerson.Name}");
-            //        break;
-            //    case NotifyCollectionChangedAction.Replace: // если замена
-            //        if ((e.NewItems?[0] is Person replacingPerson) &&
-            //            (e.OldItems?[0] is Person replacedPerson))
-            //            Console.WriteLine($"Объект {replacedPerson.Name} заменен объектом {replacingPerson.Name}");
-            //        break;
-            //}
+
+            switch (e.Action)
+            {
+                case NotifyCollectionChangedAction.Add: // если добавление
+                    if (e.NewItems?[0] is T NewElem)
+                        Changed(NewElem);
+                    break;
+                case NotifyCollectionChangedAction.Remove: // если удаление
+                    //if (e.OldItems?[0] is T oldPerson)
+                    //    Changed();
+                    break;
+            }
         }
 
+        public virtual void Changed(T NewElement)
+        {
+            
+        }
     }
 
     internal class CustomerReference : Reference<Customer> { }
@@ -95,18 +95,23 @@ namespace OOP_KURS
     internal class DocumentReference : Reference<Document> { }
     public class PositionReference : Reference<Position> 
     {
-        private float TotalSum = 0;
+        private float _TotalSum = 0;
+        public float TotalSum { get => _TotalSum; set => SetValueField(ref _TotalSum, value); }
 
         public PositionReference() : base("Number")
         {
-            foreach(Position Pos in Elements)
-            {
-                Pos.Notify += Test;
-            }
+
         }
-        void Test()
+
+        public override void Changed(Position NewElem)
         {
-            TotalSum++;
+            NewElem.RecalcSum += RecalcTotal;
+        }
+
+        public void RecalcTotal(float OldValue, float NewValue)
+        {
+            TotalSum -= OldValue;
+            TotalSum += NewValue;
         }
     }
 }

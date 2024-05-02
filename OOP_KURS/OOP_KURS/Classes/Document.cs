@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     // Документ
     public class Document : CloneSimple
@@ -15,8 +9,6 @@ namespace OOP_KURS
         private Customer _Client;
         public TypeDocument _Type;
         public DateTime? _DocDate = DateTime.Now;
-        private float TotalSum = 0;
-
 
         public ushort ID { get; set; }
         public ushort Number { get => _Number; set => SetValueField(ref _Number, value); }
@@ -29,6 +21,6 @@ namespace OOP_KURS
 
         public Customer Client { get => _Client; set => SetValueField(ref _Client, value); }
 
-        public ObservableCollection<Position> Positions { set; get; }  = new ObservableCollection<Position>();
+        public PositionReference Positions { set; get; }  = new PositionReference();
     }
 }

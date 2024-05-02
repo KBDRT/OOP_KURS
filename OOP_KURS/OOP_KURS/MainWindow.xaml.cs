@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -79,6 +79,12 @@ namespace OOP_KURS
 
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            double text = Convert.ToDouble(Test.Text);
+            AmountConverter.Convert(text, out string Kop);
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     /// <summary>
     /// Логика взаимодействия для DocumentForm.xaml
@@ -26,7 +26,7 @@ namespace OOP_KURS
         private int? PrevPopupIndx = null;
         private string FormMode;
 
-        private PositionReference DocPositions = new PositionReference();
+        //private PositionReference DocPositions = new PositionReference();
 
         public DocumentForm(string Mode = "Create", Document DocEdit = null)
         {
@@ -44,6 +44,9 @@ namespace OOP_KURS
 
             ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
             ComboBox_DocType.DisplayMemberPath = "Name";
+
+
+
 
             Elements = ReferenceHelper.GetElementsByRefName("ProductAndService");
 
@@ -64,13 +67,13 @@ namespace OOP_KURS
                 DocTemp = DocEdit;
                 Btn_Add.Visibility = Visibility.Hidden;
 
-                DocPositions.AddList(DocTemp.Positions);
+               // DocPositions.AddList(DocTemp.Positions);
 
             }
 
             else
             {
-                DocTemp.Positions = DocPositions.GetElements();
+               // DocTemp.Positions = DocPositions.GetElements();
 
                 //ComboBox_Customer.SelectedIndex = -1;
 
@@ -82,12 +85,13 @@ namespace OOP_KURS
                 //    DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
             }
 
+            DataGrid_Pos.ItemsSource = DocTemp.Positions.GetElements();
             DataContext = DocTemp;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DocPositions.AddToList(new Position { });
+            DocTemp.Positions.AddToList(new Position { });
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,6 +109,8 @@ namespace OOP_KURS
         {
             ReferenceHelper.Add(DocTemp);
             DocTemp = new Document();
+            DataGrid_Pos.ItemsSource = DocTemp.Positions.GetElements();
+            DataContext = DocTemp;
         }
 
         private void DataGrid_Pos_KeyUp(object sender, KeyEventArgs e)
@@ -124,7 +130,7 @@ namespace OOP_KURS
                 PopupSuggest.PlacementTarget = CurrentCell;
                 PopupSuggest.IsOpen = true;
                 PrevPopupIndx = RowIndex;
-                ListBox.DataContext = DocTemp.Positions[RowIndex];
+                ListBox.DataContext = DocTemp.Positions.GetElements()[RowIndex];
             }
 
             TextBox Cell = e.OriginalSource as TextBox;
@@ -156,7 +162,7 @@ namespace OOP_KURS
                 List<dynamic> SelectedItemsList = DataGrid_Pos.SelectedItems.OfType<dynamic>().ToList();
                 foreach (var Item in SelectedItemsList)
                 {
-                    DocPositions.DeleteFromList(Item);
+                    DocTemp.Positions.DeleteFromList(Item);
                 }
             }
         }

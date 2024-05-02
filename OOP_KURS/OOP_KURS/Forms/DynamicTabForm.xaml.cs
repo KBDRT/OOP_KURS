@@ -16,7 +16,7 @@ using System.Data;
 using System.Collections;
 
 
-namespace OOP_KURS
+namespace DocCreator
 {
     /// <summary>
     /// Логика взаимодействия для DynamicTabForm.xaml

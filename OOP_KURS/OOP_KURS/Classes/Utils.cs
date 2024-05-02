@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Reflection;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace OOP_KURS
+namespace DocCreator
 {
     public class CloneSimple : ICloneable, INotifyPropertyChanged
     {
@@ -22,11 +19,6 @@ namespace OOP_KURS
         // Реализация изменения поля
         public event PropertyChangedEventHandler PropertyChanged;
 
-
-
-        public delegate void AccountHandler();
-        public event AccountHandler Notify;
-
         public void OnPropertyChanged(string prop = "")
         {
             if (PropertyChanged != null)
@@ -35,12 +27,8 @@ namespace OOP_KURS
 
         public void SetValueField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            //if (!Equals(field, value))
-            //{
-                field = value;
-                OnPropertyChanged(propertyName);
-                Notify?.Invoke();
-            //}
+            field = value;
+            OnPropertyChanged(propertyName);
         }
     }
 
@@ -78,12 +66,8 @@ namespace OOP_KURS
                 {
                     ClearPropertiesValue(fi.GetValue(obj)); // Глубокий тип, рекурсия
                 }
-
             }
         }
-
-
-
     }
 
 }
