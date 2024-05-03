@@ -18,6 +18,19 @@ namespace DocCreator
         public string ViewName
         {
             get {
+                string ret_val = ViewFIO;
+
+                if (!String.IsNullOrEmpty(_Position))
+                    ret_val += ", " + Position;
+
+                return ret_val;
+            }
+        }
+
+        public string ViewFIO
+        {
+            get
+            {
                 string ret_val = "";
 
                 if (!String.IsNullOrEmpty(FirstName))
@@ -26,12 +39,10 @@ namespace DocCreator
                 if (!String.IsNullOrEmpty(_Patronymic))
                     ret_val += Patronymic[0] + ".";
 
-                if (!String.IsNullOrEmpty(_Position))
-                    ret_val += ", " + Position;
-
                 return ret_val;
             }
         }
+       
 
     }
 }

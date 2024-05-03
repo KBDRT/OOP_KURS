@@ -33,8 +33,8 @@ namespace DocCreator
 
             DG.ItemsSource = ReferenceHelper.GetElementsByRefName("Document");
 
-            ReferenceHelper.Add(new Customer { Name = "test" });
-            ReferenceHelper.Add(new Customer { Name = "test2" });
+            ReferenceHelper.Add(new Customer { Name = "test", Form = "ООО", KPP = 125235, INN = 233 });
+            ReferenceHelper.Add(new Customer { Name = "test2", Form = "ИП", KPP = 125235, INN = 233 });
 
             //ReferenceHelper.InvokeMethod("Customer", "ClearList");
 
