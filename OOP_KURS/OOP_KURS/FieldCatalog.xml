@@ -2,7 +2,7 @@
 <FieldCatalog>
 	<Section name="Customer">
 		<Name> Название компании </Name>
-		<Form> Форма собственности </Form>
+		<Form BindingName="Form.ShortName"> Форма собственности </Form>
 		<LegalAddress BindingName ="LegalAddress.FullName" ReadOnly ="X"> Юр. Адрес</LegalAddress>
 		<Phone> Телефон </Phone>
 		<INN> ИНН </INN>
@@ -42,7 +42,7 @@
 	<Section name="Position" UseDisplayIndex ="True">
 		<Number WidthStar="1" DisplayIndex ="1" ReadOnly="X"> № п.п</Number>
 		<FullName WidthStar="4" DisplayIndex ="2"> Название </FullName>
-		<UnitOfMeasurement WidthStar="1,5" DisplayIndex ="3">Ед. измерения</UnitOfMeasurement>
+		<UnitOfMeasurement WidthStar="1,5" DisplayIndex ="3" ReadOnly="X" BindingName="UnitOfMeasurement.ShorName">Ед. измерения</UnitOfMeasurement>
 		<Amount WidthStar="2" DisplayIndex ="4" StringFormat ="{0:C}"> Цена за 1</Amount>
 		<Quantity WidthStar="2" DisplayIndex ="5"> Кол-во</Quantity>
 		<TotalAmount WidthStar="2" DisplayIndex ="6" ReadOnly="X" StringFormat ="{0:C}"> Общая сумма</TotalAmount>
@@ -66,7 +66,12 @@
 		<Type BindingName ="Type.Name" DisplayIndex ="4">Тип документа</Type>
 		<DocDate DisplayIndex ="5" StringFormat ="{0:dd.MM.yyyy}">Дата документа</DocDate>
 		<CreatedDate DisplayIndex ="6" StringFormat ="{0:dd.MM.yyyy hh:mm}">Дата создания</CreatedDate>
-		<Client DisplayIndex ="3" BindingName="Client.ViewName">Заказчик</Client>
+		<Client DisplayIndex ="3" BindingName="Client.ViewName" NoUserSort="X">Заказчик</Client>
+	</Section>
+
+	<Section name="OrganizationForm">
+		<Name>Наименование</Name>
+		<ShortName>Краткое наименование</ShortName>
 	</Section>
 
 </FieldCatalog>

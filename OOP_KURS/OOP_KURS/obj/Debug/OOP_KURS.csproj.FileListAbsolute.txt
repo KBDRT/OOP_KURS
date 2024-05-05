@@ -48,3 +48,6 @@ K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\System.Memory.xml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\System.Numerics.Vectors.xml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\OOP_KURS.csproj.CopyComplete
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\MoreLinq.dll
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\MoreLinq.pdb
+K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\bin\Debug\MoreLinq.xml

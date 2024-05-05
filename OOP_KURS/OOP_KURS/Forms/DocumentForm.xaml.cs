@@ -45,9 +45,6 @@ namespace DocCreator
             ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
             ComboBox_DocType.DisplayMemberPath = "Name";
 
-
-
-
             Elements = ReferenceHelper.GetElementsByRefName("ProductAndService");
 
             if (Elements.Count > 0)
@@ -169,7 +166,7 @@ namespace DocCreator
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            ExcelHelper.Start(DocTemp);
+            ExcelHelper _ = new ExcelHelper(DocTemp);
         }
     }
 

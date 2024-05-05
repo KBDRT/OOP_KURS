@@ -142,13 +142,19 @@ namespace DocCreator
         // Закрыть на ввод поле
         private static bool CheckReadOnlyField(FieldCatalogElem Elem)
         {
-            string val = GetAttrValueForElem("ReadOnly", Elem);
+            return GetAttrValueForElem(Elem, "ReadOnly");
+        }
+
+        private static bool GetAttrValueForElem(FieldCatalogElem Elem, string AttrName)
+        {
+            string val = GetAttrValueForElem(AttrName, Elem);
 
             return val == "X";
         }
 
+
         // Ширина столбца
-        private static  DataGridLength GetWidth(FieldCatalogElem Elem)
+        private static DataGridLength GetWidth(FieldCatalogElem Elem)
         {
             string val = GetAttrValueForElem("WidthStar", Elem);
 
@@ -182,10 +188,9 @@ namespace DocCreator
                 {
                     Header = FieldText,
                     Binding = new Binding(FieldName),
-                    Width = GetWidth(Element),//DataGridLength.Auto,
-                    //IsReadOnly = CheckReadOnlyField(Element),
+                    Width = GetWidth(Element),
+                    CanUserSort = !GetAttrValueForElem(Element, "NoUserSort")
                 };
-
 
                 textColumn.IsReadOnly = UsingReadOnly == "X" ? true : CheckReadOnlyField(Element);
 

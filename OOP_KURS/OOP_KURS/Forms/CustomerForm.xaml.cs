@@ -20,13 +20,12 @@ namespace DocCreator
     public partial class CustomerForm : Window
     {
         public Customer Client = new Customer();
-
         public DynamicTabForm BankView = new DynamicTabForm("Bank", "Sel");
-        public CustomerForm()
+        private string FormMode;
+        public CustomerForm(string Mode = "Client")
         {
             InitializeComponent();
 
-            // to:do
             TextBox_PostalCode.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
             TextBox_INN.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
             TextBox_KPP.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
@@ -34,12 +33,21 @@ namespace DocCreator
             TextBox_Pay.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
             TextBox_Cor.PreviewTextInput += new TextCompositionEventHandler(Utils.NumberValidationTextBox);
 
-            Client.LegalAddress = new Address();
-            Client.CompanyRepresentative = new Person();
+            Combobox_Form.ItemsSource = ReferenceHelper.GetElementsByRefName("OrganizationForm");
+            Combobox_Form.DisplayMemberPath = "View";
+            FormMode = Mode;
 
-            Client.Bank = BankView.BankForm.Bank;
-
-            DataContext = Client;
+            if (Mode == "Client")
+            {
+                Client.Bank = BankView.BankForm.Bank;
+                DataContext = Client;
+            }
+            else
+            {
+                Btn_Add.Visibility = Visibility.Hidden;
+                BankView.BankForm.Bank = ReferenceHelper.Organization.Bank;
+                DataContext = ReferenceHelper.Organization;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -49,6 +57,7 @@ namespace DocCreator
             Client2.LegalAddress = (Address)Client.LegalAddress.Clone();
             Client2.CompanyRepresentative = (Person)Client.CompanyRepresentative.Clone();
             Client2.Bank = (Bank)Client.Bank.Clone();
+            Client2.Form = (OrganizationForm)Client.Form.Clone();
 
             ReferenceHelper.Add(Client2);
 
@@ -59,6 +68,18 @@ namespace DocCreator
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             BankView.Show();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DynamicTabForm View = new DynamicTabForm("OrganizationForm");
+            View.Show();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (FormMode == "Organization")
+                ReferenceHelper.Organization.Bank = (Bank)BankView.BankForm.Bank?.Clone(); 
         }
     }
 }

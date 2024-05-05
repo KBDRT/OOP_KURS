@@ -5,7 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocCreator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="714.251" Width="1028.87" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="704.251" Width="1037.87" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <CollectionViewSource x:Name="ColView" x:Key="MyViewSource" 
+                              Filter="yourFilter"/>
+
+        <Style x:Key="StyleTest" BasedOn="{StaticResource {x:Type DataGridColumnHeader }}" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="LightGray"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Padding" Value="10,0,0,0"></Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid>
 
         <Menu Height="25" VerticalAlignment="Top">
@@ -21,19 +32,46 @@
                 <MenuItem x:Name="Btn_Unit" Header="Единицы измерения" Click="Open_Reference_Form"></MenuItem>
 
             </MenuItem>
-            <MenuItem Header="Настройки">
+            <MenuItem Header="Настройки" Click="Open_Organization_Form">
 
             </MenuItem>
         </Menu>
-        <Label x:Name="Doc" Content="Создано документов:" HorizontalAlignment="Left" Margin="28,42,0,0" VerticalAlignment="Top"/>
 
 
-        <DataGrid x:Name="DG" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="415" Margin="28,173,0,0" VerticalAlignment="Top" Width="968" MouseDoubleClick="DG_MouseDoubleClick">
+        <Label x:Name="Doc" Content="Всего документов: 0" HorizontalAlignment="Left" Margin="29,45,0,0" VerticalAlignment="Top"/>
+
+        <CheckBox IsChecked="True" Content="Счета: 5" HorizontalAlignment="Left" Margin="184,51,0,0" VerticalAlignment="Top"/>
+        <CheckBox IsChecked="True" Content="Акты: 12" HorizontalAlignment="Left" Margin="262,51,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.076,0.6"/>
+
+        <Popup StaysOpen="False" x:Name="PopupFilter"  Placement="Left" IsOpen="False">
+            <!--<Border BorderBrush="Black" BorderThickness="1">-->
+                <StackPanel Background="White" Width="161" Height="200">
+
+                    <Grid Height="23.96">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.85*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.15*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Background="LightGray" Grid.Column="0"></StackPanel>
+                        <Button Grid.Column="1"  Content="X" FontSize="12" FontWeight="Bold" Background="LightGray" BorderThickness="0" Click="Button_Click"/>
+
+                    </Grid>
+
+                    <ListBox x:Name="ListBox_1" ItemsSource="{Binding}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Path=Text}" IsChecked="{Binding Path=IsSelected}" Click="CheckBox_Click"/>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+                </StackPanel>
+            <!--</Border>-->
+        </Popup>
+
+        <DataGrid x:Name="DG" ItemsSource="{Binding Source={StaticResource MyViewSource}}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="568" Margin="29,76,0,0" VerticalAlignment="Top" Width="968" MouseDoubleClick="DG_MouseDoubleClick" PreviewMouseLeftButtonUp="DG_PreviewMouseLeftButtonUp">
         </DataGrid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="342,122,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox x:Name="Test"  HorizontalAlignment="Left" Height="23" Margin="452,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
-
 
         <!--<Popup  x:Name="PopupSuggest" IsOpen="True" Placement="Mouse" >
             <ListBox x:Name="ListBox">

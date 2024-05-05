@@ -32,6 +32,17 @@ namespace DocCreator
         }
     }
 
+    public class ListBoxSelect : CloneSimple
+    {
+        private string _Text;
+
+        private bool _isSelected;
+
+        public bool IsSelected { get => _isSelected; set => SetValueField(ref _isSelected, value); }
+
+        public string Text { get => _Text; set => SetValueField(ref _Text, value); }
+    }
+
     static class Utils
     {
         // Ввод только числовых значений в TextBox

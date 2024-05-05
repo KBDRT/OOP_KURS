@@ -6,8 +6,11 @@ using System.Reflection;
 namespace DocCreator
 {
     // Работа со справочниками
-    static public class ReferenceHelper
+    public static class ReferenceHelper
     {
+
+        public static Customer Organization = new Customer();
+
         private static readonly Dictionary<Type, object> Components = new Dictionary<Type, object>
         {
             { typeof(Customer),          new CustomerReference() },
@@ -16,6 +19,7 @@ namespace DocCreator
             { typeof(Unit),              new UnitReference() },
             { typeof(ProductAndService), new ProductAndServiceReference() },
             { typeof(Document),          new DocumentReference() },
+            { typeof(OrganizationForm),  new OrganizationFormReference() },
         };
 
         private static readonly Dictionary<string, Type> AltComponentsName = new Dictionary<string, Type> { };
@@ -109,9 +113,28 @@ namespace DocCreator
 
         private static void InitTypeDocs()
         {
-            Add(new TypeDocument { Name = "Счет" });
-            Add(new TypeDocument { Name = "Акт выполненных работ" });
+            Add(new TypeDocument { Name = "Счет", ExcelTemplatePath = @"K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\TempAcc.xlsx", FileName = "Счет" } );
+            Add(new TypeDocument { Name = "Акт выполненных работ", ExcelTemplatePath = @"K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\TempAct.xlsx", FileName = "Акт" });
             Add(new TypeDocument { Name = "Товарная накладная" });
+
+            Organization.Bank.Name = "СБербанк";
+            Organization.Bank.BIK = 123;
+            Organization.CompanyRepresentative.FirstName = "иванов";
+            Organization.CompanyRepresentative.LastName = "иван";
+            Organization.CompanyRepresentative.Position = "директор";
+            Organization.CorrespondentAccount = "12331234";
+            Organization.Form.Name = "Индивидуа";
+            Organization.Form.ShortName = "ИП";
+            Organization.INN = 123565;
+            Organization.LegalAddress.City = "Челны";
+            Organization.LegalAddress.AppartNumber = "23";
+            Organization.LegalAddress.House = "9";
+            Organization.LegalAddress.Region = "РТ";
+            Organization.LegalAddress.Street = "Пушкина";
+            Organization.Name = "Иванов И.И";
+            Organization.PaymentAccount = "12354";
+            Organization.Phone = "89889";
+
         }
 
     }

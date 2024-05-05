@@ -93,6 +93,8 @@ namespace DocCreator
     internal class UnitReference : Reference<Unit> { }
     internal class ProductAndServiceReference : Reference<ProductAndService> { }
     internal class DocumentReference : Reference<Document> { }
+
+    internal class OrganizationFormReference : Reference<OrganizationForm> { }
     public class PositionReference : Reference<Position> 
     {
         private float _TotalSum = 0;

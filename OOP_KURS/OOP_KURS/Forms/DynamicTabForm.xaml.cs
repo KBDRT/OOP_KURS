@@ -31,9 +31,7 @@ namespace DocCreator
         public DynamicTabForm(string ReferenceName, string Mode = "Show")
         {
 
-
             InitializeComponent();
-
 
             RefName = ReferenceName;
 
@@ -47,7 +45,6 @@ namespace DocCreator
             DataGrid.ItemsSource = ReferenceHelper.GetElementsByRefName(RefName);
 
             FieldCatalog.SetPropertiesForWindow(MainWindow, RefName);
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,6 +66,9 @@ namespace DocCreator
                 case "Bank":
                     BankForm.Show();
                     break;
+                case "OrganizationForm":
+                    ReferenceHelper.Add(new OrganizationForm { });
+                    break;
             }
          
         }
@@ -78,7 +78,7 @@ namespace DocCreator
             if (DataGrid.SelectedItems.Count > 0)
             {
                 List<dynamic> SelectedItemsList = DataGrid.SelectedItems.OfType<dynamic>().ToList();
-                foreach (var Item in SelectedItemsList)
+                foreach (dynamic Item in SelectedItemsList)
                 {
                     ReferenceHelper.Delete(Item);
                 }
@@ -98,7 +98,13 @@ namespace DocCreator
                 }
             }
 
-            this.Close();
+            Close();
+        }
+
+        private void DataGrid_Unloaded(object sender, RoutedEventArgs e)
+        {
+            DataGrid grid = (DataGrid)sender;
+            grid.CommitEdit(DataGridEditingUnit.Row, true);
         }
     }
 }
