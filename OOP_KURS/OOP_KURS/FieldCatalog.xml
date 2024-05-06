@@ -65,8 +65,9 @@
 		<Number DisplayIndex ="2">Номер технический</Number>
 		<Type BindingName ="Type.Name" DisplayIndex ="4">Тип документа</Type>
 		<DocDate DisplayIndex ="5" StringFormat ="{0:dd.MM.yyyy}">Дата документа</DocDate>
-		<CreatedDate DisplayIndex ="6" StringFormat ="{0:dd.MM.yyyy hh:mm}">Дата создания</CreatedDate>
+		<CreatedDate DisplayIndex ="7" StringFormat ="{0:dd.MM.yyyy HH:mm}">Дата создания</CreatedDate>
 		<Client DisplayIndex ="3" BindingName="Client.ViewName" NoUserSort="X">Заказчик</Client>
+		<Positions DisplayIndex ="6" BindingName="Positions.TotalSum" NoUserSort="X" StringFormat ="{0:C}">Сумма</Positions>
 	</Section>
 
 	<Section name="OrganizationForm">

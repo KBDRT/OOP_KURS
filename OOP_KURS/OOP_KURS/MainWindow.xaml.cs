@@ -148,33 +148,36 @@ namespace DocCreator
             {
                 PopupFilter.IsOpen = false;
                 chel.Style = new Style();
+                //Main.Width -= Header.ActualWidth;
                 return;
             }
 
             PopupFilter.IsOpen = false;
-            FilterItems.Clear();
+            //FilterItems.Clear();
 
             ObservableCollection<Document> Elements = ReferenceHelper.GetElementsByRefName("Document");
 
             List<string> Name = Elements.DistinctBy(user => user.Client?.ID).ToList().Select(info => info.Client?.ViewName).ToList();
 
             foreach (string Elem in Name)
-                FilterItems.Add(new ListBoxSelect { Text = Elem });
-
-            // Header.BeginAnimation(Header.StylusButtonUp);
+            {
+                if (!FilterItems.Exists(x => x.Text == Elem))
+                    FilterItems.Add(new ListBoxSelect { Text = Elem });
+            }
 
             Style buttonStyle = this.FindResource("StyleTest") as Style;
             //buttonStyle.Setters.Add(new Setter { Property = BasedOn });
-
-            Header.Style = buttonStyle;
 
             if (Name.Count > 0)
             {
                 ListBox_1.Items.Refresh();
                 PopupFilter.Width = Header.ActualWidth;
-                PopupFilter.PlacementTarget = DG;
+                PopupFilter.PlacementTarget = Header;
+               // Main.Width += PopupFilter.Width;
+                Header.Style = buttonStyle;
                 PopupFilter.IsOpen = true;
             }
+
         }
 
         private void CheckBox_Click(object sender, RoutedEventArgs e)
@@ -192,19 +195,28 @@ namespace DocCreator
                 return;
             }
 
-            if (!FilterItems.Exists(x => x.IsSelected))
-            {
-                e.Accepted = true;
-                return;
-            }
+            e.Accepted = true;
 
-            e.Accepted = FilterItems.Exists(x => x.IsSelected && x.Text == item.Client?.ViewName);
+            if (FilterItems.Exists(x => x.IsSelected))
+                e.Accepted = FilterItems.Exists(x => x.IsSelected && x.Text == item.Client?.ViewName);
+
+            if (e.Accepted && !(bool)Check_Acc.IsChecked && item.Type?.ID == 1)
+                e.Accepted = false;
+
+            if (e.Accepted && !(bool)Check_Act.IsChecked && item.Type?.ID == 2)
+                e.Accepted = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PopupFilter.IsOpen = false;
-            chel.Style = new Style();
+           // Main.Width -= chel.ActualWidth;
+           // PopupFilter.IsOpen = false;
+            //chel.Style = new Style(); 
+        }
+
+        private void PopupFilter_Closed(object sender, EventArgs e)
+        {
+            //Main.Width -= chel.ActualWidth;
         }
     }
 }

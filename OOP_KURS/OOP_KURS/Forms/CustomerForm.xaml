@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocCreator"
         mc:Ignorable="d"
-        Title="CustomerForm" Height="520.739" Width="908.851" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+        Title="Организация" Height="520.739" Width="908.851" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Grid Margin="5,5,5,5">
 
         <Grid  ShowGridLines="False" Grid.Column="1">

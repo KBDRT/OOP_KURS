@@ -15,11 +15,9 @@ K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\OOP_KURS.exe
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\OOP_KURS.pdb
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\BankForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\CustomerForm.g.cs
-K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocsForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocumentForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\BankForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\CustomerForm.baml
-K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocsForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DocumentForm.baml
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicForm.g.cs
 K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\obj\Debug\Forms\DynamicForm.baml

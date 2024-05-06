@@ -115,7 +115,7 @@ namespace DocCreator
         {
             Add(new TypeDocument { Name = "Счет", ExcelTemplatePath = @"K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\TempAcc.xlsx", FileName = "Счет" } );
             Add(new TypeDocument { Name = "Акт выполненных работ", ExcelTemplatePath = @"K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\TempAct.xlsx", FileName = "Акт" });
-            Add(new TypeDocument { Name = "Товарная накладная" });
+           // Add(new TypeDocument { Name = "Товарная накладная" });
 
             Organization.Bank.Name = "СБербанк";
             Organization.Bank.BIK = 123;
