@@ -16,7 +16,7 @@ namespace DocCreator
         public ExcelHelper(Document Doc)
         {
 
-            if (Doc.Type?.ID == null || (Doc.Type?.ID != 1 && Doc.Type?.ID != 2))
+            if (Doc == null || Doc.Type?.ID == null || (Doc.Type?.ID != 1 && Doc.Type?.ID != 2))
                 return;
 
             wbook = new XLWorkbook(Doc.Type.ExcelTemplatePath);
@@ -96,7 +96,7 @@ namespace DocCreator
             // Positions
             int PositionsCount = DocData.Positions.GetElemCount();
             ObservableCollection<Position> Positions = DocData.Positions.GetElements();
-            string SumInWords = AmountConverter.Convert(DocData.Positions.TotalSum, out _);
+            string SumInWords = Convert(DocData.Positions.TotalSum, out _);
 
             if (PositionsCount > 1)
                 Sheet.Row(27).InsertRowsBelow(PositionsCount - 1);
@@ -111,7 +111,7 @@ namespace DocCreator
                 SetHeightRow(27 + i);
                 Sheet.Cell(27 + i, 1).Value = i + 1;
                 Sheet.Cell(27 + i, 2).Value = Positions[i].FullName;
-                Sheet.Cell(27 + i, 13).Value = Positions[i].UnitOfMeasurement.FullName;
+                Sheet.Cell(27 + i, 13).Value = Positions[i].UnitOfMeasurement;
                 Sheet.Cell(27 + i, 17).Value = Positions[i].Quantity;
                 Sheet.Cell(27 + i, 22).Value = Math.Round(Positions[i].Amount, 2);
                 Sheet.Cell(27 + i, 30).Value = Math.Round(Positions[i].TotalAmount, 2);
@@ -135,7 +135,7 @@ namespace DocCreator
             // Positions
             int PositionsCount = DocData.Positions.GetElemCount();
             ObservableCollection<Position> Positions = DocData.Positions.GetElements();
-            string SumInWords = AmountConverter.Convert(DocData.Positions.TotalSum, out string Kop);
+            string SumInWords = Convert(DocData.Positions.TotalSum, out string Kop);
 
             if (PositionsCount > 1)
                 Sheet.Row(10).InsertRowsBelow(PositionsCount - 1);
@@ -147,7 +147,7 @@ namespace DocCreator
                 Sheet.Cell(10 + i, 1).Value = i + 1;
                 Sheet.Cell(10 + i, 2).Value = Positions[i].FullName;
                 Sheet.Cell(10 + i, 6).Value = Positions[i].Quantity;
-                Sheet.Cell(10 + i, 7).Value = Positions[i].UnitOfMeasurement.FullName;
+                Sheet.Cell(10 + i, 7).Value = Positions[i].UnitOfMeasurement;
                 Sheet.Cell(10 + i, 8).Value = Math.Round(Positions[i].Amount, 2);
                 Sheet.Cell(10 + i, 9).Value = Math.Round(Positions[i].TotalAmount, 2);
             }
@@ -199,8 +199,116 @@ namespace DocCreator
 
         private string FormFileName()
         {
-            return string.Format("{0} №{1}, {2} '{3}', {4}", DocData.Type.FileName, DocData.Number, DocData.Client.Form.ShortName, DocData.Client.Name, GetDateWithFormat(DocData.DocDate));
+            return string.Format("{0} №{1}, {2} '{3}', {4}", DocData.Type.FileName, DocData.Number, DocData.Client?.Form.ShortName, DocData.Client?.Name, GetDateWithFormat(DocData.DocDate));
         }
 
+
+        public string Convert(double Sum, out string Kop)
+        {
+            byte FractPart, Kop1, Kop2;
+            string KopFull;
+            int FixPart = (int)Sum; // Целая часть суммы
+            Sum = Math.Round(Sum, 2); // Округление до 2 знаков после запятой
+            FractPart = (byte)(Math.Round(Sum - FixPart, 2) * 100); // Дробная часть
+            Kop1 = (byte)(FractPart / 10); // Десятая дробная часть
+            Kop2 = (byte)(FractPart % 10); // Сотая дробная часть
+
+            // Определение копеек
+            if (Kop1 != 1 && Kop2 == 1)
+            {
+                KopFull = " копейка";
+            }
+            else if (Kop1 != 1 && Kop2 > 1 && Kop2 < 5)
+            {
+                KopFull = " копейки";
+            }
+            else
+            {
+                KopFull = " копеек";
+            }
+
+            KopFull = string.Format("{0}{1}{2}", Kop1, Kop2, KopFull);
+            Kop = string.Format("{0}{1}", Kop1, Kop2);
+
+            // Разделение целой суммы по 3 цифрам
+            int[] Sum_3x = new int[4];
+            for (byte i = 0; i < 4; i++)
+            {
+                Sum = (double)FixPart / 1000;
+                FixPart = (int)Sum;
+                Sum_3x[i] = (int)(Math.Round(Sum - FixPart, 3) * 1000);
+            }
+
+            string[] TextTemp = new string[4];
+            byte Numb1, Numb2, Numb3;
+
+            string[] T1 = { "", "сто ", "двести ", "триста ", "четыреста ", "пятьсот ", "шестьсот ", "семьсот ", "восьмесот ", "девятьсот " };
+            string[] T2 = { "", "", "двадцать ", "тридцать ", "сорок ", "пятьдесят ", "шестьдесят ", "семьдесят ", "восьмедясят ", "девяносто " };
+
+
+            string Text0 = "";
+            if (Sum_3x[0] + Sum_3x[1] + Sum_3x[2] + Sum_3x[3] == 0)
+                Text0 = "ноль рублей " + KopFull;
+            else
+            { 
+                for (byte i = 0; i < 4; i++)
+                {
+                    Numb1 = (byte)(Sum_3x[i] % 10); // Единичный разряд
+                    Numb2 = (byte)((Sum_3x[i] - Numb1) / 10 % 10); // Десятичный
+                    Numb3 = (byte)(Sum_3x[i] / 100); // Сотый
+                    TextTemp[i] = T1[Numb3] + T2[Numb2];
+
+                    TextTemp[i] += GetFirstText(Numb1, Numb2, i);
+                    TextTemp[i] += GetSecondText(Numb1, Numb2, Numb3, i);
+                }
+
+                for (sbyte i = 3; i >= 0; i--)
+                {
+                    Text0 += TextTemp[i];
+                }
+                Text0 += KopFull;
+            }
+
+            return Text0;
+        }
+
+        private string GetFirstText(byte N1, byte N2, byte i )
+        {
+            string[] T3 = { "десять ", "одиннадцать ", "двенадцать ", "тринадцать ", "четырнадцать ", "пятнадцать ", "шестнадцать ", "семнадцать ", "восемнадцать ", "девятнадцать " };
+            string[] T4 = { "", "одна ", "две ", "три ", "четыре ", "пять ", "шесть ", "семь ", "восемь ", "девять " };
+            string[] T5 = { "", "один ", "два ", "три ", "четыре ", "пять ", "шесть ", "семь ", "восемь ", "девять " };
+            string Val = "";
+
+            if (N1 == 1)
+                Val = T3[N1];
+            else if (N2 != 1 && i == 1)
+                Val = T4[N1];
+            else
+                Val = T5[N1];
+
+            return Val;
+        }
+
+
+        private string GetSecondText(byte N1, byte N2, byte N3, byte i)
+        {
+            string Val = "";
+            string[] T6 = { "рубль ", "тысяча ", "миллион ", "миллиард" };
+            string[] T7 = { "рубля ", "тысячи ", "миллиона ", "миллиарда" };
+            string[] T8 = { "рублей ", "", "", "" };
+            string[] T9 = { "рублей ", "тысяч ", "миллионов ", "миллиардов" };
+
+            if (N2 != 1 && N1 == 1)
+                Val = T6[i];
+            else if (N2 != 1 && N1 > 1 && N1 < 5)
+                Val = T7[i];
+            else if (N1 == 0 && N2 == 0 && N3 == 0)
+                Val = T8[i];
+            else
+                Val = T9[i];
+
+
+            return Val;
+        }
     }
 }

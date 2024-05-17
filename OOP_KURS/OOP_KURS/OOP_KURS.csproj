@@ -141,7 +141,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Address.cs" />
-    <Compile Include="Classes\AmountConverter.cs" />
     <Compile Include="Classes\Bank.cs" />
     <Compile Include="Classes\ExcelHelper.cs" />
     <Compile Include="Classes\FieldCatalog.cs" />
@@ -160,7 +159,6 @@
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\ProductAndService.cs" />
     <Compile Include="Classes\TypeDocument.cs" />
-    <Compile Include="Classes\Unit.cs" />
     <Compile Include="Classes\Utils.cs" />
     <Compile Include="Classes\ReferenceHelper.cs" />
     <Page Include="Forms\BankForm.xaml">

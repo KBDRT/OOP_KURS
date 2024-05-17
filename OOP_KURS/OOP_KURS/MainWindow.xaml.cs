@@ -1,8 +1,6 @@
 ﻿using MoreLinq;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,10 +19,12 @@ namespace DocCreator
 
         private List<ListBoxSelect> FilterItems = new List<ListBoxSelect>();
 
+        private DataGridColumnHeader PrevHeader;
+
+        private char CurrentSort;
+
         public MainWindow()
         {
-
-           
             InitializeComponent();
 
 
@@ -33,53 +33,8 @@ namespace DocCreator
             CollectionViewSource cvs = (CollectionViewSource)Resources["MyViewSource"];
             cvs.Source = ReferenceHelper.GetElementsByRefName("Document");
 
-
-           // DG.ItemsSource = ReferenceHelper.GetElementsByRefName("Document");
-
-            Customer Organization = new Customer();
-
-            DG.Items.SortDescriptions.Clear();
-            DG.Items.SortDescriptions.Add(new SortDescription("ID", ListSortDirection.Descending));
-            DG.Items.Refresh();
-
-
-            Organization.Bank.Name = "СБербанк";
-            Organization.Bank.BIK = 123;
-            Organization.CompanyRepresentative.FirstName = "Куршов";
-            Organization.CompanyRepresentative.LastName = "иван";
-            Organization.CompanyRepresentative.Patronymic = "директор";
-            Organization.CorrespondentAccount = "12331234";
-            Organization.Form.Name = "Общество";
-            Organization.Form.ShortName = "ОО";
-            Organization.INN = 123565;
-            Organization.LegalAddress.City = "Челны";
-            Organization.LegalAddress.AppartNumber = "23";
-            Organization.LegalAddress.House = "9";
-            Organization.LegalAddress.Region = "РТ";
-            Organization.LegalAddress.Street = "Пушкина";
-            Organization.Name = "ЗубОК";
-            Organization.PaymentAccount = "12354";
-            Organization.Phone = "89889";
-
-
-            ReferenceHelper.Add(Organization);
-            ReferenceHelper.Add(new Customer { Name = "test2",  KPP = 125235, INN = 233 });
-
             ListBox_1.DataContext = FilterItems;
 
-            //ReferenceHelper.InvokeMethod("Customer", "ClearList");
-
-            // Test.RemoveAt(0);
-
-            //var MyObservableCollection = ReferenceHelper.GetElementsByRefName("Customer");
-
-            // DG.DataContext = MyObservableCollection;
-
-            // DG.ItemsSource = ReferenceHelper.GetElementsByRefName("Customer");
-
-            //ReferenceHelper.Add(new Customer { Name = "A" });
-
-            //FieldCatalog.SetColumnsForDataGrid(DG, "Document");
         }
 
         private void Open_Reference_Form(object sender, RoutedEventArgs e)
@@ -118,8 +73,6 @@ namespace DocCreator
             View.Show();
         }
 
-        private DataGridColumnHeader chel;
-
         private void DG_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             var obj = (DependencyObject)e.OriginalSource;
@@ -134,8 +87,12 @@ namespace DocCreator
             {
                 if (columnHeader.DisplayIndex == 2)
                 {
-                    chel = columnHeader;
                     PopupStart(columnHeader);
+                    PrevHeader = columnHeader;
+                }
+                else if (columnHeader.DisplayIndex == 5)
+                {
+                    SortTotalSumColumn(columnHeader);
                 }
             }
 
@@ -144,16 +101,17 @@ namespace DocCreator
 
         private void PopupStart(DataGridColumnHeader Header)
         {
-            if (PopupFilter.IsOpen)
+            if (PopupFilter.IsOpen && PrevHeader == Header)
             {
                 PopupFilter.IsOpen = false;
-                chel.Style = new Style();
-                //Main.Width -= Header.ActualWidth;
+                Header.Style = new Style();
                 return;
             }
 
+            if (PrevHeader != null)
+                PrevHeader.Style = new Style();
+
             PopupFilter.IsOpen = false;
-            //FilterItems.Clear();
 
             ObservableCollection<Document> Elements = ReferenceHelper.GetElementsByRefName("Document");
 
@@ -166,7 +124,6 @@ namespace DocCreator
             }
 
             Style buttonStyle = this.FindResource("StyleTest") as Style;
-            //buttonStyle.Setters.Add(new Setter { Property = BasedOn });
 
             if (Name.Count > 0)
             {
@@ -187,7 +144,7 @@ namespace DocCreator
             cvs.View.Refresh();
         }
 
-        private void yourFilter(object sender, FilterEventArgs e)
+        private void FilterDocument(object sender, FilterEventArgs e)
         {
             if (!(e.Item is Document item))
             {
@@ -207,16 +164,19 @@ namespace DocCreator
                 e.Accepted = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void SortTotalSumColumn(DataGridColumnHeader Col)
         {
-           // Main.Width -= chel.ActualWidth;
-           // PopupFilter.IsOpen = false;
-            //chel.Style = new Style(); 
-        }
-
-        private void PopupFilter_Closed(object sender, EventArgs e)
-        {
-            //Main.Width -= chel.ActualWidth;
+            if (CurrentSort == 'D')
+            {
+                Col.Content = Col.DataContext + " ▲";
+                CurrentSort = 'A';
+            }
+            else
+            {
+                Col.Content = Col.DataContext + " ▼";
+                CurrentSort = 'D';
+            }
+            ReferenceHelper.InvokeMethod("Document", "BubbleSortByTotalSumm", CurrentSort == 'A');
         }
     }
 }

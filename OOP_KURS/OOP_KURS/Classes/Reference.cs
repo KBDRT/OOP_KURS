@@ -15,7 +15,6 @@ namespace DocCreator
 
         public void AddToList(T elem)
         {
-            //ID_MethodInfo?.SetValue(elem, Convert.ToUInt16(Elements.Count + 1));
             Elements.Add(elem);
         }
 
@@ -54,6 +53,7 @@ namespace DocCreator
             Elements.CollectionChanged += ElementsCollectionChanged;
         }
 
+
         public ObservableCollection<T> GetElements()
         {
             return Elements;
@@ -75,8 +75,6 @@ namespace DocCreator
                         Changed(NewElem);
                     break;
                 case NotifyCollectionChangedAction.Remove: // если удаление
-                    //if (e.OldItems?[0] is T oldPerson)
-                    //    Changed();
                     break;
             }
         }
@@ -85,15 +83,40 @@ namespace DocCreator
         {
             
         }
+
     }
 
     internal class CustomerReference : Reference<Customer> { }
     internal class TypeReference : Reference<TypeDocument> { }
     internal class BankReference : Reference<Bank> { }
-    internal class UnitReference : Reference<Unit> { }
     internal class ProductAndServiceReference : Reference<ProductAndService> { }
-    internal class DocumentReference : Reference<Document> { }
+    internal class DocumentReference : Reference<Document> 
+    {
+        public void BubbleSortByTotalSumm(bool Desc)
+        {
+            for (int i = 1; i < Elements.Count; i++)
+            {
+                for (int j = 0; j < Elements.Count - i; j++)
+                { 
+                    if ((Desc && Elements[j].Positions.TotalSum > Elements[j + 1].Positions.TotalSum)
+                        || (!Desc && Elements[j].Positions.TotalSum < Elements[j + 1].Positions.TotalSum))
+                    {
+                        SwapDocuments(j, j + 1);
+                    }
+                }
+            }
+        }
 
+        private void SwapDocuments(int IndxFirst, int IndxSecond)
+        {
+            Document CopyFirst = Utils.Clone(Elements[IndxFirst]);
+            Document CopySecond = Utils.Clone(Elements[IndxSecond]);
+            Elements.RemoveAt(IndxFirst);
+            Elements.Insert(IndxFirst, CopySecond);
+            Elements.RemoveAt(IndxSecond);
+            Elements.Insert(IndxSecond, CopyFirst);
+        }
+    }
     internal class OrganizationFormReference : Reference<OrganizationForm> { }
     public class PositionReference : Reference<Position> 
     {

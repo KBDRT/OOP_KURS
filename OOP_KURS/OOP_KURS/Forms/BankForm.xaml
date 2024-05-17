@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DocCreator"
         mc:Ignorable="d"
-        Title="Банк" Height="153" Width="534" WindowStartupLocation="CenterScreen">
+        Title="Банк" Height="174" Width="555" WindowStartupLocation="CenterScreen">
     <Grid x:Name="rootWindow">
         <Grid>
             <Grid.RowDefinitions>
@@ -15,17 +15,17 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="1,01*"></ColumnDefinition>
+                <ColumnDefinition Width="0,99*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row ="0" Grid.Column="0" Content="Наименование банка" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" />
-            <Label Grid.Row ="1" Grid.Column="0" Content="Банковский идентификационный код (БИК)" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26"  />
+            <Label Grid.Row ="0" Grid.Column="0" Content="Наименование банка:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" FontSize="14" FontWeight="Bold" />
+            <Label Grid.Row ="1" Grid.Column="0" Content="Банковский идентификационный код:" HorizontalAlignment="Left"  VerticalAlignment="Center" Height="26" FontWeight="Bold" FontSize="14"  />
 
             <TextBox Grid.Row ="0" Text="{Binding Path = Name}" Grid.Column="1" HorizontalAlignment="Left" Height="24"  TextWrapping="Wrap" VerticalAlignment="Center"  Width="250" />
             <TextBox Grid.Row ="1" Text="{Binding Path = BIK}" Grid.Column="1" x:Name ="TextBox_BIK" HorizontalAlignment="Left" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" MaxLength="9"  Width="70"/>
 
-            <Button Content="Добавить" Grid.Column="1" Grid.Row ="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="75" Click="Button_Click" />
+            <Button Content="Добавить" Grid.Column="1" Grid.Row ="2" HorizontalAlignment="Right"  VerticalAlignment="Center" Width="75" Click="Button_Click" FontSize="14" Margin="0,3,3,3" />
 
 
 

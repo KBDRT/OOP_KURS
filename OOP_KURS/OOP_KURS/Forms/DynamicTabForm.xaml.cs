@@ -1,20 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Configuration;
-using System.Data;
-using System.Collections;
-
 
 namespace DocCreator
 {
@@ -27,8 +14,9 @@ namespace DocCreator
 
         public CustomerForm CustomerView;
         public BankForm BankForm;
+        private Bank CurrentBank;
 
-        public DynamicTabForm(string ReferenceName, string Mode = "Show")
+        public DynamicTabForm(string ReferenceName, string Mode = "Show", Bank SelBank = null)
         {
 
             InitializeComponent();
@@ -36,7 +24,14 @@ namespace DocCreator
             RefName = ReferenceName;
 
             if (Mode != "Sel")
+            {
                 LastRow.Height = new GridLength(0);
+                Btn_Add.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                CurrentBank = SelBank;
+            }
 
             BankForm = new BankForm();
 
@@ -55,15 +50,12 @@ namespace DocCreator
                     CustomerView = new CustomerForm();
                     CustomerView.ShowDialog();
                     break;
-                case "Unit":
-                    DynamicForm View = new DynamicForm("Unit");
-                    View.Show();
-                    break;
                 case "ProductAndService":
                     DynamicForm View_2 = new DynamicForm("ProductAndService");
                     View_2.Show();
                     break;
                 case "Bank":
+                    BankForm = new BankForm();
                     BankForm.Show();
                     break;
                 case "OrganizationForm":
@@ -92,9 +84,9 @@ namespace DocCreator
                 List<dynamic> SelectedItemsList = DataGrid.SelectedItems.OfType<dynamic>().ToList();
                 foreach (Bank Item in SelectedItemsList)
                 {
-                    BankForm.Bank.Name = Item.Name;
-                    BankForm.Bank.BIK = Item.BIK;
-                    BankForm.Bank.GetView();
+                    CurrentBank.Name = Item.Name;
+                    CurrentBank.BIK = Item.BIK;
+                    CurrentBank.GetView();
                 }
             }
 

@@ -28,19 +28,12 @@ namespace DocCreator
         public string Value;
     }
 
-
-    //public static class FieldCatalogFunctions
-    //{
-        
-    //}
-
-
     // Класс подготовки полей для форм
     public static class FieldCatalog
     {
-        static private List<FieldCatalogClass> ClassValues = new List<FieldCatalogClass>();
+        private static List<FieldCatalogClass> ClassValues = new List<FieldCatalogClass>();
 
-        private const string FilePath = @"K:\GitHub\OOP_KURS\OOP_KURS\OOP_KURS\FieldCatalog.xml";
+        private static string FilePath = Environment.CurrentDirectory.ToString() + @"\FieldCatalog.xml";
 
         // Конструктор
         static FieldCatalog()
@@ -49,7 +42,7 @@ namespace DocCreator
         }
 
         // Получить Текст к полям таблицы
-        static public void GetFieldCatalog()
+        public static void GetFieldCatalog()
         {
             XElement xdoc = XDocument.Load(FilePath).Element("FieldCatalog");
 
@@ -58,16 +51,12 @@ namespace DocCreator
                 FieldCatalogClass CatalogClass = new FieldCatalogClass { ClassName = (string)ElemSection.Attribute("name") };
                 foreach (XElement Elem in ElemSection.Elements())
                 {
-
                     List<FieldCatalogAttr> AttrList = new List<FieldCatalogAttr>();
-
                     foreach (XAttribute Attr in Elem.Attributes())
                     {
                         AttrList.Add(new FieldCatalogAttr { Name = Attr.Name.ToString(), Value = Attr.Value });
                     }
-
                     CatalogClass.Elems.Add(new FieldCatalogElem { FieldName = Elem.Name.LocalName, FieldText = Elem.Value, FieldAttr = AttrList });
-
                 }
 
                 foreach (XAttribute Attr in ElemSection.Attributes())
@@ -75,7 +64,6 @@ namespace DocCreator
                     if (Attr.Name.ToString() != "name")
                         CatalogClass.Properties.Add(new FieldCatalogAttr { Name = Attr.Name.ToString(), Value = Attr.Value });
                 }
-
 
                 ClassValues.Add(CatalogClass);
             }
@@ -120,12 +108,10 @@ namespace DocCreator
             return Attr?.Value;
         }
 
-
         static private dynamic GetAttrValueForSect(string ClassName, string AttrName)
         {
             return GetFieldCatalog(ClassName)?.Properties?.Find(x => x.Name == AttrName)?.Value;
         }
-
 
         // Получить из строки подстроку между двумя символами
         static private void ParseFieldNameBtw(ref string FieldName, char LeftSymbol = '<', char RightSymbol = '>')
@@ -152,14 +138,16 @@ namespace DocCreator
             return val == "X";
         }
 
-
         // Ширина столбца
         private static DataGridLength GetWidth(FieldCatalogElem Elem)
         {
             string val = GetAttrValueForElem("WidthStar", Elem);
-
-            double width = val != null ? Convert.ToDouble (val) : 1.0;
-
+            double width = 1.0;
+            try
+            {
+                width = val != null ? Convert.ToDouble(val) : 1.0;
+            }
+            catch { }
             return new DataGridLength(width, DataGridLengthUnitType.Star);
         }
 
@@ -221,7 +209,7 @@ namespace DocCreator
                 {
                     Info?.SetValue(Window, Convert.ToDouble(prop.Value));
                 }
-                catch { }          
+                catch { }
             }
         }
 

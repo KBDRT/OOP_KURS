@@ -11,7 +11,7 @@ namespace DocCreator
         public ushort ID;
         public string FullName { get => _FullName; set => SetValueField(ref _FullName, value); }
         public string Type { set; get; }
-        public Unit UnitOfMeasurement { set; get; } = new Unit();
+        public string UnitOfMeasurement { set; get; }
         public string Info { set; get; }
     }
 

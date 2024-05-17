@@ -64,6 +64,10 @@ namespace DocCreator
         // Очистить свойства из объекта
         public static void ClearPropertiesValue(object obj)
         {
+            if (obj == null)
+                return;
+
+
             foreach (PropertyInfo fi in obj?.GetType()?.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.ToArray())
             {
                 if (!fi.CanWrite)
@@ -79,6 +83,27 @@ namespace DocCreator
                 }
             }
         }
-    }
 
+        public static dynamic Clone(dynamic Elem)
+        {
+            Type ElemType = Elem.GetType();
+
+            object ElemCopy = Elem.Clone();
+
+            foreach (PropertyInfo fi in ElemType.GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.ToArray())
+            {
+                if (!fi.CanWrite)
+                    continue;
+
+                if (!fi.PropertyType.FullName.ToString().StartsWith("System."))
+                {
+                    dynamic value = fi?.GetValue(Elem);
+                    object ElemCopyDeep = value?.Clone();
+                    fi.SetValue(ElemCopy, ElemCopyDeep);
+                }
+            }
+
+            return ElemCopy;
+        }
+    }
 }

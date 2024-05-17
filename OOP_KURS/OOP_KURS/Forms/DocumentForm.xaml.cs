@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DocCreator
 {
@@ -21,12 +15,9 @@ namespace DocCreator
     /// </summary>
     public partial class DocumentForm : Window
     {
-
         private Document DocTemp = new Document();
         private int? PrevPopupIndx = null;
         private string FormMode;
-
-        //private PositionReference DocPositions = new PositionReference();
 
         public DocumentForm(string Mode = "Create", Document DocEdit = null)
         {
@@ -39,47 +30,18 @@ namespace DocCreator
             ComboBox_Customer.DisplayMemberPath = "Name";
 
             FieldCatalog.SetColumnsForDataGrid(DataGrid_Pos, "Position");
-
-            ObservableCollection<ProductAndService> Elements;
-
             ComboBox_DocType.ItemsSource = ReferenceHelper.GetElementsByRefName("TypeDocument");
             ComboBox_DocType.DisplayMemberPath = "Name";
-
-            Elements = ReferenceHelper.GetElementsByRefName("ProductAndService");
-
-            if (Elements.Count > 0)
-            {
-                ListBox.ItemsSource = Elements;
-                ListBox.DisplayMemberPath = "FullName";
-            }
-            else
-            {
-                ListBox.Items.Add("Test222");
-                ListBox.Items.Add("Test111");
-            }
-
            
             if (Mode == "Edit" && DocEdit != null)
             {
                 DocTemp = DocEdit;
                 Btn_Add.Visibility = Visibility.Hidden;
-
-               // DocPositions.AddList(DocTemp.Positions);
-
             }
 
             else
             {
-               // DocTemp.Positions = DocPositions.GetElements();
-
-                //ComboBox_Customer.SelectedIndex = -1;
-
                 DatePicker.SelectedDate = DateTime.Now;
-
-                //DataGrid_Pos.ItemsSource = DocPositions.GetElements();
-
-                //if (ComboBox_DocType.Items.Count > 0)
-                //    DocTemp.Type = (TypeDocument)ComboBox_DocType.Items[0];
             }
 
             DataGrid_Pos.ItemsSource = DocTemp.Positions.GetElements();
@@ -91,9 +53,9 @@ namespace DocCreator
             DocTemp.Positions.AddToList(new Position { });
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListBoxSuggest_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ListBox.SelectedIndex != -1)
+            if (ListBoxSuggest.SelectedIndex != -1)
                 PopupSuggest.IsOpen = false;
         }
 
@@ -116,7 +78,7 @@ namespace DocCreator
 
             int RowIndex = Grid.Items.IndexOf(Grid.CurrentItem);
 
-            if (Grid.CurrentCell.Column.SortMemberPath != "FullName")
+            if (Grid.CurrentCell.Column.SortMemberPath != "FullName" || ListBoxSuggest.Items.Count < 1)
                 return;
 
             if (PrevPopupIndx != RowIndex || (PrevPopupIndx == RowIndex && !PopupSuggest.IsOpen))
@@ -127,7 +89,7 @@ namespace DocCreator
                 PopupSuggest.PlacementTarget = CurrentCell;
                 PopupSuggest.IsOpen = true;
                 PrevPopupIndx = RowIndex;
-                ListBox.DataContext = DocTemp.Positions.GetElements()[RowIndex];
+                ListBoxSuggest.DataContext = DocTemp.Positions.GetElements()[RowIndex];
             }
 
             TextBox Cell = e.OriginalSource as TextBox;
@@ -136,15 +98,17 @@ namespace DocCreator
                 string CellText = Cell.Text;
                 if (!string.IsNullOrEmpty(CellText) && CellText != " ")
                 {
-                    ListBox.Items.Filter = f =>
+                    ListBoxSuggest.Items.Filter = f =>
                     {
-                        string _text = f as string;
-                        return _text.StartsWith(CellText, StringComparison.CurrentCultureIgnoreCase) || _text.IndexOf(CellText, StringComparison.OrdinalIgnoreCase) >= 0;
+                        if (f is string _text)
+                            return _text.StartsWith(CellText, StringComparison.CurrentCultureIgnoreCase) || _text.IndexOf(CellText, StringComparison.OrdinalIgnoreCase) >= 0;
+                        else
+                            return true;
                     };
                 }
                 else
                 {
-                    ListBox.Items.Filter = f =>
+                    ListBoxSuggest.Items.Filter = f =>
                     {
                         return true;
                     };
@@ -168,17 +132,20 @@ namespace DocCreator
         {
             ExcelHelper _ = new ExcelHelper(DocTemp);
         }
+
+        private void ListBoxSuggest_Initialized(object sender, EventArgs e)
+        {
+            ObservableCollection<ProductAndService> Elements = ReferenceHelper.GetElementsByRefName("ProductAndService");
+
+            foreach (ProductAndService chel in Elements)
+            {
+                ListBoxSuggest.Items.Add(chel.FullName);
+            }
+        }
     }
 
     public static class DataGridExtensions
     {
-        /// <summary>
-        /// Returns a DataGridCell for the given row and column
-        /// </summary>
-        /// <param name="grid">The DataGrid</param>
-        /// <param name="row">The zero-based row index</param>
-        /// <param name="column">The zero-based column index</param>
-        /// <returns>The requested DataGridCell, or null if the indices are out of range</returns>
         public static DataGridCell GetCell(this DataGrid grid, Int32 row, Int32 column)
         {
             DataGridRow gridrow = grid.GetRow(row);
@@ -186,8 +153,7 @@ namespace DocCreator
             {
                 DataGridCellsPresenter presenter = GetVisualChild<DataGridCellsPresenter>(gridrow);
 
-                // try to get the cell but it may possibly be virtualized
-                DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(4); // ???
+                DataGridCell cell = (DataGridCell)presenter.ItemContainerGenerator.ContainerFromIndex(4); 
                 if (cell == null)
                 {
                     // now try to bring into view and retreive the cell
@@ -202,16 +168,11 @@ namespace DocCreator
             return (null);
         }
 
-        /// <summary>
-        /// Gets the DataGridRow based on the given index
-        /// </summary>
-        /// <param name="idx">The zero-based index of the container to get</param>
         public static DataGridRow GetRow(this DataGrid dataGrid, Int32 idx)
         {
             DataGridRow row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(idx);
             if (row == null)
             {
-                // may be virtualized, bring into view and try again
                 dataGrid.ScrollIntoView(dataGrid.Items[idx]);
                 dataGrid.UpdateLayout();
 
